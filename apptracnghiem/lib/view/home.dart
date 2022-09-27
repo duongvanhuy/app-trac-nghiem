@@ -1,4 +1,5 @@
 import 'package:apptracnghiem/view/ontap/home_ontap.dart';
+import 'package:apptracnghiem/view/profile/profile.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -281,37 +282,44 @@ class Home extends StatelessWidget {
             ),
           ),
           Card(
-            child: Container(
-              margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
-              // border bottom
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    color: Color.fromARGB(255, 247, 39, 60),
-                    width: 4,
+            child: InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Profile()));
+              },
+              child: Container(
+                margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+                // border bottom
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Color.fromARGB(255, 247, 39, 60),
+                      width: 4,
+                    ),
                   ),
                 ),
-              ),
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Icon(
-                    // icon ""about us""
-                    Icons.lock,
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Icon(
+                      // icon ""about us""
+                      Icons.lock,
 
-                    color: Color.fromARGB(255, 247, 39, 60),
-                    size: 65,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Tài khoản',
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
-                  ),
-                ],
+                      color: Color.fromARGB(255, 247, 39, 60),
+                      size: 65,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Tài khoản',
+                      style:
+                          TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
