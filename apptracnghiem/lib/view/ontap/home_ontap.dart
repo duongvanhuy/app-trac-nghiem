@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-
-class Home_OnTap extends StatelessWidget {
-  const Home_OnTap({Key? key}) : super(key: key);
-
-
+class HomeOnTap extends StatelessWidget {
+  const HomeOnTap({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,41 +13,36 @@ class Home_OnTap extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {}, 
-          icon: Icon(Icons.arrow_back)
-        ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back)),
         title: Text("Ôn Tập"),
       ),
       body: buildBody(size),
     );
-
   }
 
   buildBody(var size) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.pink
-      ),
+      decoration: BoxDecoration(color: Colors.pink),
       padding: EdgeInsets.only(top: 10, left: 20, right: 20),
       child: ListView(
-        children: [
-          buildListItem(size)
-        ],
+        children: [buildListItem(size)],
       ),
     );
   }
 
   buildListItem(var size) {
     return Container(
-      height: size.height*.80,
+      height: size.height * .80,
       child: GridView.builder(
         itemCount: 6,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1, 
-          mainAxisSpacing: 15,
-          crossAxisSpacing: 15,
-          childAspectRatio: 4.4
-        ),
+            crossAxisCount: 1,
+            mainAxisSpacing: 15,
+            crossAxisSpacing: 15,
+            childAspectRatio: 4.4),
         itemBuilder: (BuildContext context, int index) {
           return buildItem(size, context);
         },
@@ -62,9 +54,7 @@ class Home_OnTap extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(5)
-      ),
+          color: Colors.white, borderRadius: BorderRadius.circular(5)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -78,36 +68,31 @@ class Home_OnTap extends StatelessWidget {
           ),
           SizedBox(width: 15),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                InkWell(
-                  child: Text(
-                    "Luật Giao thông đường thuỷ nội địa",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 16
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Detail_Ontap()));
-                  },
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              InkWell(
+                child: Text(
+                  "Luật Giao thông đường thuỷ nội địa",
+                  style: TextStyle(color: Colors.blue, fontSize: 16),
                 ),
-                const Text(
-                  "60 câu",
-                  style: TextStyle(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Detail_Ontap()));
+                },
+              ),
+              const Text(
+                "60 câu",
+                style: TextStyle(
                     color: Colors.blue,
                     fontWeight: FontWeight.bold,
-                    fontSize: 16
-                  ),
-                ),
-                const Divider(
-                  color: Colors.yellow,
-                  height: 20,
-                  thickness: 3,
-                ),
-              ]
-            ),
+                    fontSize: 16),
+              ),
+              const Divider(
+                color: Colors.yellow,
+                height: 20,
+                thickness: 3,
+              ),
+            ]),
           )
         ],
       ),
