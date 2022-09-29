@@ -1,0 +1,112 @@
+[
+  {
+    "id": "1",
+    "QuestionName": "Đâu là câu SAI về ngôn ngữ Java?",
+    "AnswerA": "Ngôn ngữ Java có phân biệt chữ hoa – chữ thường ",
+    "AnswerB": "Java là ngôn ngữ lập trình hướng đối tượng",
+    "AnswerC": "Dấu chấm phẩy được sử dụng để kết thúc lệnh trong java ",
+    "AnswerD": "Chương trình viết  bằng Java chỉ có thể chạy trên hệ điều hành win ",
+    "AnswerCorrect": "A",
+    "Image": "null",
+    "TopicId": "Java"
+  },
+  {
+    "id": "2",
+    "QuestionName": "Đâu không phải là một kiểu dữ liệu nguyên thủy trong Java?",
+    "AnswerA": "double ",
+    "AnswerB": "int  ",
+    "AnswerC": "long ",
+    "AnswerD": "long float ",
+    "AnswerCorrect": "A",
+    "Image": "null",
+    "TopicId": "Java"
+  },
+  {
+    "id": "3",
+    "QuestionName": ": Trong câu lệnh sau: public static void main(String[] agrs) thì phần tử agrs[0] chứa giá trị gì?",
+    "AnswerA": "Tên của chương trình",
+    "AnswerB": "Số lượng tham số",
+    "AnswerC": "Tham số đầu tiên của danh sách tham số  ",
+    "AnswerD": "Không câu nào đúng ",
+    "AnswerCorrect": "A",
+    "Image": "null",
+    "TopicId": "Java"
+  },
+  {
+    "id": "4",
+    "QuestionName": "Phương thức next() của lớp Scanner dùng để làm gì?",
+    "AnswerA": "Nhập một số nguyên ",
+    "AnswerB": "Nhập một ký tự",
+    "AnswerC": "Nhập một chuỗi ",
+    "AnswerD": "Không có phương thức này",
+    "AnswerCorrect": "A",
+    "Image": "null",
+    "TopicId": "Java"
+  },
+  {
+    "id": "5",
+    "QuestionName": ": Muốn chạy được chương trình java, chỉ cần cài phần mền nào sau đây?",
+    "AnswerA": "Netbeans",
+    "AnswerB": "Eclipse ",
+    "AnswerC": "JDK  ",
+    "AnswerD": "Java Platform",
+    "AnswerCorrect": "A",
+    "Image": "null",
+    "TopicId": "Java"
+  },
+  {
+    "id": "6",
+    "QuestionName": "Gói nào trong java chứa lớp Scanner dùng để nhập dữ liệu từ bàn phím?",
+    "AnswerA": "java.net",
+    "AnswerB": "java.io",
+    "AnswerC": "java.util",
+    "AnswerD": "java.awt ",
+    "AnswerCorrect": "A",
+    "Image": "null",
+    "TopicId": "Java"
+  },
+  {
+    "id": "7",
+    "QuestionName": "Phương thức nextLine() thuộc lớp nào ?",
+    "AnswerA": "String ",
+    "AnswerB": "Scanner ",
+    "AnswerC": "Integer ",
+    "AnswerD": "System  ",
+    "AnswerCorrect": "A",
+    "Image": "null",
+    "TopicId": "Java"
+  },
+  {
+    "id": "8",
+    "QuestionName": "Tên đầu tiên của Java là gì?",
+    "AnswerA": "Java ",
+    "AnswerB": "Oak  ",
+    "AnswerC": "Cafe   ",
+    "AnswerD": "James golings   ",
+    "AnswerCorrect": "A",
+    "Image": "null",
+    "TopicId": "Java"
+  },
+  {
+    "id": "9",
+    "QuestionName": "Đâu là khai báo biến hợp lệ?",
+    "AnswerA": "theOne",
+    "AnswerB": "the One",
+    "AnswerC": "1the_One",
+    "AnswerD": "$the One",
+    "AnswerCorrect": "A",
+    "Image": "null",
+    "TopicId": "Java"
+  },
+  {
+    "id": "10",
+    "QuestionName": "Biểu thức nào có giá trị khác  các biểu thức còn lại trong các biểu thức sau? Cho x=true thuộc kiểu boolean",
+    "AnswerA": "true ",
+    "AnswerB": "x==true",
+    "AnswerC": "1==1",
+    "AnswerD": "!x",
+    "AnswerCorrect": "A",
+    "Image": "null",
+    "TopicId": "Java"
+  }
+]

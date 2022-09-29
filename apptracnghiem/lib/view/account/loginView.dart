@@ -185,14 +185,32 @@ class _LoginViewState extends State<LoginView> {
           const SizedBox(height: 10),
           // login button
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
               // Validate returns true if the form is valid, or false otherwise.
               if (_formKey.currentState!.validate()) {
                 // delete data in text field
                 // _usernameController.clear();
-                APIHelper.login(
+                var check = await APIHelper.login(
                     _usernameController.text, _passwordController.text);
-                goToHome();
+                if (check) {
+                  goToHome();
+                } else {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text('Thông báo'),
+                          content: const Text('Đăng nhập thất bại'),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('OK'))
+                          ],
+                        );
+                      });
+                }
               } else {
                 print('login fail');
               }
