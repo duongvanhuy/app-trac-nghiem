@@ -11,25 +11,8 @@ void main() {
       ChangeNotifierProvider(create: (context) => Demo_Provider()),
     ],
     child: MaterialApp(
-      home: Home(),
+      home: LoginView(),
       debugShowCheckedModeBanner: false,
     ),
   ));
 }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({Key? key}) : super(key: key);
-
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'Flutter Demo 123',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: LoginView(),
-//     );
-//   }
-// }

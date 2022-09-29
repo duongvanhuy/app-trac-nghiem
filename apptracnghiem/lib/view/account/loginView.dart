@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:apptracnghiem/view/home.dart';
+import 'package:apptracnghiem/provider/api_helper.dart';
 import 'package:apptracnghiem/widget/account/icon_bottom.dart';
 import 'package:flutter/material.dart';
 import 'registerView.dart';
@@ -189,6 +190,8 @@ class _LoginViewState extends State<LoginView> {
               if (_formKey.currentState!.validate()) {
                 // delete data in text field
                 // _usernameController.clear();
+                APIHelper.login(
+                    _usernameController.text, _passwordController.text);
                 goToHome();
               } else {
                 print('login fail');
