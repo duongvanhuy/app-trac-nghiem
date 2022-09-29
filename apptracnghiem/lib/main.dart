@@ -11,7 +11,9 @@ void main() {
       ChangeNotifierProvider(create: (context) => Demo_Provider()),
     ],
     child: MaterialApp(
-      home: LoginView(),
+      // home: LoginView(),
+      home: Home(),
+
       debugShowCheckedModeBanner: false,
     ),
   ));

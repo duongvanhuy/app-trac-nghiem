@@ -1,4 +1,5 @@
 import 'package:apptracnghiem/view/ontap/home_ontap.dart';
+import 'package:apptracnghiem/view/thithu/home_thithu.dart';
 import 'package:apptracnghiem/view/profile/profile.dart';
 import 'package:flutter/material.dart';
 
@@ -148,7 +149,12 @@ class Home extends StatelessWidget {
             ),
           ),
           Card(
-            child: Container(
+            child: InkWell(
+               onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomeThiThu()));
+              },
+              child: Container(
               margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
               // border bottom
               decoration: BoxDecoration(
@@ -179,6 +185,7 @@ class Home extends StatelessWidget {
                 ],
               ),
             ),
+            )
           ),
           Card(
             child: Container(
