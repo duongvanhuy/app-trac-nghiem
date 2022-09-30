@@ -77,7 +77,7 @@ class HomeOnTap extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Detail_Ontap()));
+                      MaterialPageRoute(builder: (context) => DetailOntap()));
                 },
               ),
               const Text(
