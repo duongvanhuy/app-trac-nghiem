@@ -1,4 +1,4 @@
-import 'package:apptracnghiem/provider/demo.dart';
+import 'package:apptracnghiem/provider/api_helper.dart';
 import 'package:apptracnghiem/view/account/loginView.dart';
 import 'package:apptracnghiem/view/home.dart';
 import 'package:apptracnghiem/view/ontap/home_ontap.dart';
@@ -8,11 +8,11 @@ import 'package:provider/provider.dart';
 void main() {
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (context) => Demo_Provider()),
+      ChangeNotifierProvider(create: (context) => APIHelper()),
     ],
     child: MaterialApp(
-      // home: LoginView(),
-      home: Home(),
+      home: LoginView(),
+      //  home: Home(),
 
       debugShowCheckedModeBanner: false,
     ),

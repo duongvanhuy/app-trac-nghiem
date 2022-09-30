@@ -4,9 +4,10 @@ import 'dart:io';
 import 'package:apptracnghiem/model/topic.dart';
 import 'package:apptracnghiem/model/user.dart';
 import 'package:apptracnghiem/provider/SettingHelper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-class APIHelper {
+class APIHelper extends ChangeNotifier {
   static var user = SettingHelper.user;
   //Login
   static Future<bool> login(String userName, String password) async {
