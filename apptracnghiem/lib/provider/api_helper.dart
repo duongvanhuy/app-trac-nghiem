@@ -29,6 +29,7 @@ class APIHelper extends ChangeNotifier {
   // cài đặt số lượng câu hỏi trong bài thi -- mặc định 10 câu
   // int totalQuestion = SettingHelper.totolQuestion[0];
   int totalQuestion = ChangeSettingExamProvider().totalQuestion;
+  List<Color> listNumberQuestion = [];
 
   //Login
   static Future<bool> login(String userName, String password) async {
@@ -113,6 +114,7 @@ class APIHelper extends ChangeNotifier {
       }
     });
     getQuestionInTopic();
+    listNumberQuestions();
     notifyListeners();
   }
 
@@ -146,6 +148,7 @@ class APIHelper extends ChangeNotifier {
   void changeColorAnswer() {
     var colorAnswer = topic.items![questionNow - 1].answerUser;
     if (colorAnswer != null) {
+      listNumberQuestion[questionNow - 1] = SettingHelper.colors[0];
       switch (colorAnswer) {
         case "A":
           colorBasic[0] = SettingHelper.colors[0];
@@ -211,6 +214,13 @@ class APIHelper extends ChangeNotifier {
 
   void backToHome() {
     listTopic = [];
+    notifyListeners();
+  }
+
+  void listNumberQuestions() {
+    for (int i = 0; i < totalQuestion; i++) {
+      listNumberQuestion.add(SettingHelper.colors[2]);
+    }
     notifyListeners();
   }
 }

@@ -266,7 +266,7 @@ class DetailExam extends StatelessWidget {
               new List<Widget>.generate(value.topic.items.length, (index) {
             return new GridTile(
               child: new CircleAvatar(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: value.listNumberQuestion[index],
                   child: new Center(
                     child: new Text("${index + 1}"),
                   )),
