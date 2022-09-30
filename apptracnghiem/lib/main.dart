@@ -1,4 +1,5 @@
 import 'package:apptracnghiem/provider/api_helper.dart';
+import 'package:apptracnghiem/provider/change_setting_exam.dart';
 import 'package:apptracnghiem/view/account/loginView.dart';
 import 'package:apptracnghiem/view/home.dart';
 import 'package:apptracnghiem/view/setting/home_setting.dart';
@@ -9,6 +10,7 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => APIHelper()),
+      ChangeNotifierProvider(create: (context) => ChangeSettingExamProvider()),
     ],
     child: MaterialApp(
       //home: LoginView(),
