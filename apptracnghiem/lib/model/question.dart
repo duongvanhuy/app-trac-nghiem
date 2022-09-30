@@ -6,6 +6,8 @@ class Question {
   String? answerC;
   String? answerD;
   String? answerCorrect;
+  String? answerUser; //
+  bool? isCorrect; //
   String? image;
   String? topicId;
   // contractor

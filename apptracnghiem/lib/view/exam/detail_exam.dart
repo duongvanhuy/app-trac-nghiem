@@ -99,66 +99,86 @@ class DetailExam extends StatelessWidget {
       height: 400,
       child: Column(
         children: [
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              CircleAvatar(
-                child: Text("A"),
-                backgroundColor: Colors.blue,
-              ),
-              SizedBox(width: 20),
-              Flexible(
-                child: Text("${value.question.answerA}"),
-              )
-            ],
+          InkWell(
+            onTap: () {
+              value.changeAnswerUser("A");
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                CircleAvatar(
+                  child: Text("A"),
+                  backgroundColor: value.colorBasic[0],
+                ),
+                SizedBox(width: 20),
+                Flexible(
+                  child: Text("${value.question.answerA}"),
+                )
+              ],
+            ),
           ),
           SizedBox(
             height: 10,
           ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              CircleAvatar(
-                child: Text("B"),
-                backgroundColor: Colors.blue,
-              ),
-              SizedBox(width: 20),
-              Flexible(
-                child: Text("${value.question.answerB}"),
-              )
-            ],
+          InkWell(
+            onTap: () {
+              value.changeAnswerUser("B");
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                CircleAvatar(
+                  child: Text("B"),
+                  backgroundColor: value.colorBasic[1],
+                ),
+                SizedBox(width: 20),
+                Flexible(
+                  child: Text("${value.question.answerB}"),
+                )
+              ],
+            ),
           ),
           SizedBox(
             height: 10,
           ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              CircleAvatar(
-                child: Text("C"),
-                backgroundColor: Colors.blue,
-              ),
-              SizedBox(width: 20),
-              Flexible(
-                child: Text("${value.question.answerC}"),
-              )
-            ],
+          InkWell(
+            onTap: () {
+              value.changeAnswerUser("C");
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                CircleAvatar(
+                  child: Text("C"),
+                  backgroundColor: value.colorBasic[2],
+                ),
+                SizedBox(width: 20),
+                Flexible(
+                  child: Text("${value.question.answerC}"),
+                )
+              ],
+            ),
           ),
           SizedBox(
             height: 10,
           ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              CircleAvatar(
-                child: Text("D"),
-                backgroundColor: Colors.blue,
-              ),
-              SizedBox(width: 20),
-              Flexible(
-                child: Text("${value.question.answerD}"),
-              )
-            ],
+          InkWell(
+            onTap: () {
+              value.changeAnswerUser("D");
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                CircleAvatar(
+                  child: Text("D"),
+                  backgroundColor: value.colorBasic[3],
+                ),
+                SizedBox(width: 20),
+                Flexible(
+                  child: Text("${value.question.answerD}"),
+                )
+              ],
+            ),
           ),
         ],
       ),
