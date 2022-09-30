@@ -1,6 +1,7 @@
 import 'package:apptracnghiem/view/exam/home_exam.dart';
 import 'package:apptracnghiem/view/review/home_review.dart';
 import 'package:apptracnghiem/view/profile/profile.dart';
+import 'package:apptracnghiem/view/setting/home_setting.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -188,35 +189,41 @@ class Home extends StatelessWidget {
             )
           ),
           Card(
-            child: Container(
-              margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
-              // border bottom
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    color: Colors.blue,
-                    width: 4,
+            child: InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomeSetting()));
+              },
+              child: Container(
+                margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+                // border bottom
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Colors.blue,
+                      width: 4,
+                    ),
                   ),
                 ),
-              ),
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Icon(
-                    Icons.settings,
-                    color: Colors.blue,
-                    size: 65,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Cài đặt',
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
-                  ),
-                ],
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Icon(
+                      Icons.settings,
+                      color: Colors.blue,
+                      size: 65,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Cài đặt',
+                      style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
