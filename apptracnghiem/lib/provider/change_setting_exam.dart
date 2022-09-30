@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class ChangeSettingExamProvider extends ChangeNotifier {
-    int totalQuestion = 30;
+    int totalQuestion = 10;
     int time = 3;
 
     void changeTimeExam(newValue) {
