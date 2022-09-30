@@ -14,6 +14,7 @@ class DetailExam extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
               onPressed: () {
+                value.back_delete_allMemory();
                 Navigator.pop(context);
               },
               icon: Icon(Icons.arrow_back)),
@@ -226,7 +227,7 @@ class DetailExam extends StatelessWidget {
                 showModalBottomSheet(
                     context: context,
                     builder: (builder) {
-                      return buildModalBottomWidget(context);
+                      return buildModalBottomWidget(context, value);
                     });
               },
               icon: Icon(Icons.arrow_drop_up)),
@@ -243,7 +244,7 @@ class DetailExam extends StatelessWidget {
     );
   }
 
-  buildModalBottomWidget(BuildContext context) {
+  buildModalBottomWidget(BuildContext context, value) {
     return Container(
       height: 200.0,
       padding: EdgeInsets.only(top: 10, bottom: 10),
@@ -261,7 +262,8 @@ class DetailExam extends StatelessWidget {
           padding: const EdgeInsets.all(4.0),
           mainAxisSpacing: 4.0,
           crossAxisSpacing: 4.0,
-          children: new List<Widget>.generate(30, (index) {
+          children:
+              new List<Widget>.generate(value.topic.items.length, (index) {
             return new GridTile(
               child: new CircleAvatar(
                   backgroundColor: Colors.blue,

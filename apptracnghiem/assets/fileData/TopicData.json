@@ -112,13 +112,24 @@
         "AnswerCorrect": "D",
         "Image": "null",
         "TopicId": "Java"
+      },
+      {
+        "id": "11",
+        "QuestionName": "Phương thức next() của lớp Scanner dùng để làm gì?",
+        "AnswerA": "Nhập một số nguyên ",
+        "AnswerB": "Nhập một ký tự",
+        "AnswerC": "Nhập một chuỗi ",
+        "AnswerD": "Không có phương thức này",
+        "AnswerCorrect": "C",
+        "Image": "null",
+        "TopicId": "Java"
       }
     ]
   },
   {
     "Id": 2,
     "Name": "C#",
-    "item": [
+    "items": [
       {
         "id": "1",
         "QuestionName": "Đầu ra của đoạn code sau là gì? #include<stdio.h> main() { int x = 5; if(x=5) { if(x=5) break; printf('Quantrimang.com xin chào!'); } printf('Quantrimang.com'); }",
@@ -195,8 +206,51 @@
         "AnswerCorrect": "A",
         "Image": "null",
         "TopicId": "C#"
+      },
+      {
+        "id": "8",
+        "QuestionName": "Biến cục bộ (local variable) trong C được lưu trữ trong...?",
+        "AnswerA": "Code segment",
+        "AnswerB": "Stack segment",
+        "AnswerC": "Heap segment",
+        "AnswerD": "Không đáp án nào đúng",
+        "AnswerCorrect": "B",
+        "Image": "null",
+        "TopicId": "C#"
+      },
+      {
+        "id": "9",
+        "QuestionName": "Hàm thư viện C rewind() định vị lại con trỏ nội bộ của tập tin về vị trí nào?",
+        "AnswerA": "Đầu file.",
+        "AnswerB": "Cuối file.",
+        "AnswerC": "Giữa file",
+        "AnswerD": "Vị trí chỉ định.",
+        "AnswerCorrect": "A",
+        "Image": "null",
+        "TopicId": "C#"
+      },
+      {
+        "id": "10",
+        "QuestionName": " Biểu thức con trỏ tương đương với việc sử dụng các phần tử mảng a[i][j][k][2] là?",
+        "AnswerA": "((((a+m)+n)+o)+p)",
+        "AnswerB": "*(*(*(*(a+i)+j)+k)+2)",
+        "AnswerC": "*( (((a+m)+n)+o+p)",
+        "AnswerD": "*( ((a+m)+n+o+p)",
+        "AnswerCorrect": "B",
+        "Image": "null",
+        "TopicId": "C#"
+      },
+      {
+        "id": "11",
+        "QuestionName": "Đầu ra của đoạn code sau là gì? #include<stdio.h> main() { int x = 5; if(x=5) { if(x=5) break; printf('Quantrimang.com xin chào!'); } printf('Quantrimang.com'); }",
+        "AnswerA": "Lỗi biên dịch",
+        "AnswerB": "Quantrimang.com xin chào!",
+        "AnswerC": "Quantrimang.com",
+        "AnswerD": "Cảnh báo của trình biên dịch.",
+        "AnswerCorrect": "A",
+        "Image": "null",
+        "TopicId": "C#"
       }
-
     ]
   }
 ]
