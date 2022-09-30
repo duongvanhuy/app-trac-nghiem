@@ -1,7 +1,9 @@
+import 'package:apptracnghiem/provider/api_helper.dart';
 import 'package:apptracnghiem/view/exam/detail_exam.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
 
 class HomeExam extends StatelessWidget {
   const HomeExam({Key? key}) : super(key: key);
@@ -9,45 +11,49 @@ class HomeExam extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.arrow_back)),
-        title: Text("Thi Thử"),
-      ),
-      body: buildBody(size),
-    );
+    return Consumer<APIHelper>(builder: (context, value, child) {
+      return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back)),
+          title: Text("Thi Thử"),
+        ),
+        body: buildBody(size, value),
+      );
+    });
   }
 
-  buildBody(var size) {
+  buildBody(var size, value) {
     return Container(
       decoration: BoxDecoration(color: Colors.pink),
       padding: EdgeInsets.only(top: 10, left: 20, right: 20),
       child: ListView(
-        children: [buildListItem(size)],
+        children: [buildListItem(size, value)],
       ),
     );
   }
 
-  buildListItem(var size) {
+  buildListItem(var size, value) {
+    print("length" + value.listTopic.length.toString());
     return Container(
       height: size.height * .9,
       child: ListView.builder(
-        itemCount: 10,
+        itemCount: value.listTopic.length,
         itemBuilder: (BuildContext context, int index) {
-          return buildItem(size, context);
+          return buildItem(size, context, value, index);
         },
       ),
     );
   }
 
-  buildItem(var size, BuildContext context) {
+  buildItem(var size, BuildContext context, value, index) {
     return InkWell(
       onTap: () {
+        value.getTopicById(value.listTopic[index].id);
+        value.getQuestionInTopic();
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => DetailExam()));
       },
@@ -75,8 +81,8 @@ class HomeExam extends StatelessWidget {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Đề 1",
+                    Text(
+                      "Bộ đề thi thử ${value.listTopic[index].name}",
                       style: TextStyle(color: Colors.blue, fontSize: 16),
                     ),
                     const Text(
@@ -99,7 +105,8 @@ class HomeExam extends StatelessWidget {
                           padding: EdgeInsets.all(15),
                           child: Align(
                             alignment: Alignment.centerRight,
-                            child: Text("30 câu",
+                            child: Text(
+                                "${value.listTopic[index].items.length} câu",
                                 style: TextStyle(
                                     color: Colors.blue, fontSize: 18)),
                           ),
