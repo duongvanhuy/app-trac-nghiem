@@ -120,6 +120,7 @@ class APIHelper extends ChangeNotifier {
 
   void changeQuestionNow(int index) {
     questionNow = index;
+    changeColorAnswer();
     notifyListeners();
   }
 
@@ -222,5 +223,17 @@ class APIHelper extends ChangeNotifier {
       listNumberQuestion.add(SettingHelper.colors[2]);
     }
     notifyListeners();
+  }
+
+// kiểm tra xem tất cả câu hỏi đã trả lời chưa
+  bool checkAllAnswerUserIsTrue() {
+    bool check = true;
+    for (int i = 0; i < topic.items!.length; i++) {
+      if (topic.items![i].answerUser == null) {
+        check = false;
+        break;
+      }
+    }
+    return check;
   }
 }
