@@ -1,7 +1,7 @@
 import 'package:apptracnghiem/provider/demo.dart';
 import 'package:apptracnghiem/view/account/loginView.dart';
 import 'package:apptracnghiem/view/home.dart';
-import 'package:apptracnghiem/view/ontap/home_ontap.dart';
+import 'package:apptracnghiem/view/setting/home_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +12,7 @@ void main() {
     ],
     child: MaterialApp(
       // home: LoginView(),
-      home: Home(),
+      home: HomeSetting(),
 
       debugShowCheckedModeBanner: false,
     ),

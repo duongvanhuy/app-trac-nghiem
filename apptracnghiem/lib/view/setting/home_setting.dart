@@ -1,10 +1,10 @@
-import 'package:apptracnghiem/view/ontap/detail_ontap.dart';
+import 'package:apptracnghiem/view/review/detail_review.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class HomeOnTap extends StatelessWidget {
-  const HomeOnTap({Key? key}) : super(key: key);
+class HomeSetting extends StatelessWidget {
+  const HomeSetting({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class HomeOnTap extends StatelessWidget {
               Navigator.pop(context);
             },
             icon: Icon(Icons.arrow_back)),
-        title: Text("Ôn Tập"),
+        title: Text("Thiết Lập"),
       ),
       body: buildBody(size),
     );
@@ -37,7 +37,7 @@ class HomeOnTap extends StatelessWidget {
     return Container(
       height: size.height * .80,
       child: GridView.builder(
-        itemCount: 6,
+        itemCount: 3,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 1,
             mainAxisSpacing: 15,
@@ -54,7 +54,16 @@ class HomeOnTap extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(5)),
+          color: Colors.white, borderRadius: BorderRadius.circular(5),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 1,
+              offset: Offset(1, 2), // changes position of shadow
+            ),
+          ],
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -72,12 +81,12 @@ class HomeOnTap extends StatelessWidget {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               InkWell(
                 child: Text(
-                  "Luật Giao thông đường thuỷ nội địa",
+                  "Lái Phương Tiện",
                   style: TextStyle(color: Colors.blue, fontSize: 16),
                 ),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => DetailOntap()));
+                      MaterialPageRoute(builder: (context) => DetailReview()));
                 },
               ),
               const Text(
