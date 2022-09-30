@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class Detail_Thithu extends StatelessWidget {
-  const Detail_Thithu({Key? key}) : super(key: key);
+class DetailExam extends StatelessWidget {
+  const DetailExam({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

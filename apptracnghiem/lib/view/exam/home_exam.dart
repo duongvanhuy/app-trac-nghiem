@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class HomeThiThu extends StatelessWidget {
-  const HomeThiThu({Key? key}) : super(key: key);
+class HomeExam extends StatelessWidget {
+  const HomeExam({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

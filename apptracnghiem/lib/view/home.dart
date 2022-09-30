@@ -1,5 +1,5 @@
-import 'package:apptracnghiem/view/ontap/home_ontap.dart';
-import 'package:apptracnghiem/view/thithu/home_thithu.dart';
+import 'package:apptracnghiem/view/exam/home_exam.dart';
+import 'package:apptracnghiem/view/review/home_review.dart';
 import 'package:apptracnghiem/view/profile/profile.dart';
 import 'package:flutter/material.dart';
 
@@ -111,7 +111,7 @@ class Home extends StatelessWidget {
             child: InkWell(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomeOnTap()));
+                    MaterialPageRoute(builder: (context) => HomeReview()));
               },
               child: Container(
                 //  padding: EdgeInsets.only(left: 10, right: 10),
@@ -152,7 +152,7 @@ class Home extends StatelessWidget {
             child: InkWell(
                onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomeThiThu()));
+                    MaterialPageRoute(builder: (context) => HomeExam()));
               },
               child: Container(
               margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
