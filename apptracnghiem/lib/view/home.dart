@@ -1,29 +1,35 @@
+import 'package:apptracnghiem/provider/api_helper.dart';
 import 'package:apptracnghiem/view/exam/home_exam.dart';
 import 'package:apptracnghiem/view/review/home_review.dart';
 import 'package:apptracnghiem/view/profile/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Home'),
-      // ),
-      body: buildBody(context),
-    );
+    return Consumer<APIHelper>(builder: (context, value, child) {
+      return Scaffold(
+        // appBar: AppBar(
+        //   title: Text('Home'),
+        // ),
+        body: buildBody(context, value),
+      );
+    });
   }
 
-  Widget buildBody(context) {
+  Widget buildBody(context, value) {
     return Column(
       children: [
         buildHeader(context),
-        buildContent(context),
+        buildContent(context, value),
       ],
     );
   }
 
-  Widget buildHeader(context) {
+  Widget buildHeader(
+    context,
+  ) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.25,
       child: Stack(
@@ -94,7 +100,7 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget buildContent(context) {
+  Widget buildContent(context, value) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.75,
       child: GridView(
@@ -149,12 +155,14 @@ class Home extends StatelessWidget {
             ),
           ),
           Card(
-            child: InkWell(
-               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomeExam()));
-              },
-              child: Container(
+              child: InkWell(
+            onTap: () {
+              value.getAllTopic();
+
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomeExam()));
+            },
+            child: Container(
               margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
               // border bottom
               decoration: BoxDecoration(
@@ -185,8 +193,7 @@ class Home extends StatelessWidget {
                 ],
               ),
             ),
-            )
-          ),
+          )),
           Card(
             child: Container(
               margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),

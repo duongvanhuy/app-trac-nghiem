@@ -11,8 +11,8 @@ void main() {
       ChangeNotifierProvider(create: (context) => APIHelper()),
     ],
     child: MaterialApp(
-      home: LoginView(),
-      //  home: Home(),
+      //home: LoginView(),
+      home: Home(),
 
       debugShowCheckedModeBanner: false,
     ),

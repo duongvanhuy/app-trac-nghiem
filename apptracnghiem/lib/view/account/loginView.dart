@@ -192,7 +192,7 @@ class _LoginViewState extends State<LoginView> {
                 // _usernameController.clear();
                 var check = await APIHelper.login(
                     _usernameController.text, _passwordController.text);
-                await APIHelper.getAllTopic();
+
                 if (check) {
                   goToHome();
                 } else {
