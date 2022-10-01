@@ -1,5 +1,6 @@
 import 'package:apptracnghiem/provider/api_helper.dart';
 import 'package:apptracnghiem/view/exam/home_exam.dart';
+import 'package:apptracnghiem/view/regulation/home_regulation.dart';
 import 'package:apptracnghiem/view/review/home_review.dart';
 import 'package:apptracnghiem/view/profile/profile.dart';
 import 'package:apptracnghiem/view/setting/home_setting.dart';
@@ -227,7 +228,8 @@ class Home extends StatelessWidget {
                     ),
                     Text(
                       'Cài đặt',
-                      style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
                     ),
                   ],
                 ),
@@ -235,6 +237,11 @@ class Home extends StatelessWidget {
             ),
           ),
           Card(
+              child: InkWell(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => HomeRegulation()));
+            },
             child: Container(
               margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
               // border bottom
@@ -266,7 +273,7 @@ class Home extends StatelessWidget {
                 ],
               ),
             ),
-          ),
+          )),
           Card(
             child: Container(
               margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
