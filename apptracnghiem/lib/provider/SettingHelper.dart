@@ -42,6 +42,13 @@ class SettingHelper {
   static const int KEY_IWE_Level_HangNhat = 1;
   static const int KEY_IWE_Level_HangHai = 2;
 
+  static const List<int> totolQuestion = [
+    10,
+    20,
+    30,
+    40,
+  ];
+
   // static List<Meta> metaList = [];
   // static List<Topic> examTopics = [];
   // static List<Topic> practiceTopics = [];

@@ -1,4 +1,5 @@
 import 'package:apptracnghiem/provider/api_helper.dart';
+import 'package:apptracnghiem/view/exam/exam_results.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -14,6 +15,7 @@ class DetailExam extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
               onPressed: () {
+                value.back_delete_allMemory();
                 Navigator.pop(context);
               },
               icon: Icon(Icons.arrow_back)),
@@ -24,12 +26,47 @@ class DetailExam extends StatelessWidget {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text(
-                "Nộp bài",
-                style: TextStyle(color: Colors.white, fontSize: 18),
-              ),
-              onPressed: () {},
-            )
+                child: Text(
+                  "Nộp bài",
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+                onPressed: () {
+                  var check = value.checkAllAnswerUserIsTrue();
+                  // check == true => đã đã trả lời hết
+                  print("check" + check.toString());
+                  if (check == false) {
+                    // show confirm dialog "Bạn chưa hoàn thành hết bài thi, bạn có muốn nộp bài không ?"
+                    showDialog(
+                        context: context,
+                        builder: (_) {
+                          return AlertDialog(
+                            title: Text("Chú ý!!!"),
+                            content: Text(
+                                "Bạn chưa hoàn thành hết bài thi, bạn có muốn nộp bài không ?"),
+                            actions: [
+                              TextButton(
+                                child: Text("Quay lại"),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                              TextButton(
+                                child: Text("Nộp bài"),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => ExamResults()));
+                                },
+                              ),
+                            ],
+                          );
+                        });
+                  } else {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ExamResults()));
+                  }
+                })
           ],
           centerTitle: true,
         ),
@@ -226,7 +263,7 @@ class DetailExam extends StatelessWidget {
                 showModalBottomSheet(
                     context: context,
                     builder: (builder) {
-                      return buildModalBottomWidget(context);
+                      return buildModalBottomWidget(context, value);
                     });
               },
               icon: Icon(Icons.arrow_drop_up)),
@@ -243,7 +280,7 @@ class DetailExam extends StatelessWidget {
     );
   }
 
-  buildModalBottomWidget(BuildContext context) {
+  buildModalBottomWidget(BuildContext context, value) {
     return Container(
       height: 200.0,
       padding: EdgeInsets.only(top: 10, bottom: 10),
@@ -261,17 +298,55 @@ class DetailExam extends StatelessWidget {
           padding: const EdgeInsets.all(4.0),
           mainAxisSpacing: 4.0,
           crossAxisSpacing: 4.0,
-          children: new List<Widget>.generate(30, (index) {
-            return new GridTile(
-              child: new CircleAvatar(
-                  backgroundColor: Colors.blue,
-                  child: new Center(
-                    child: new Text("${index + 1}"),
-                  )),
+          children: List<Widget>.generate(value.topic.items.length, (index) {
+            return GridTile(
+              child: InkWell(
+                onTap: () {
+                  value.changeQuestionNow(++index);
+                  Navigator.pop(context);
+                  print("index: $index");
+                },
+                child: CircleAvatar(
+                    backgroundColor: value.listNumberQuestion[index],
+                    child: Center(
+                      child: Text("${index + 1}"),
+                    )),
+              ),
             );
           }),
         ),
       ),
+    );
+  }
+
+  showAlertDialog(BuildContext context) {
+    // set up the buttons
+    Widget cancelButton = TextButton(
+      child: Text("Cancel"),
+      onPressed: () {},
+    );
+    Widget continueButton = TextButton(
+      child: Text("Continue"),
+      onPressed: () {},
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("AlertDialog"),
+      content: Text(
+          "Would you like to continue learning how to use Flutter alerts?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }
@@ -304,3 +379,4 @@ class DetailExam extends StatelessWidget {
 //                         Navigator.pop(context);
 //                       },)),
 //                 ),
+

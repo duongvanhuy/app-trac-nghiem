@@ -16,6 +16,7 @@ class HomeExam extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
               onPressed: () {
+                value.backToHome();
                 Navigator.pop(context);
               },
               icon: Icon(Icons.arrow_back)),
@@ -37,12 +38,13 @@ class HomeExam extends StatelessWidget {
   }
 
   buildListItem(var size, value) {
-    print("length" + value.listTopic.length.toString());
+    print("lengthaaaaa" + value.listTopic.length.toString());
     return Container(
       height: size.height * .9,
       child: ListView.builder(
         itemCount: value.listTopic.length,
         itemBuilder: (BuildContext context, int index) {
+          print("index" + index.toString());
           return buildItem(size, context, value, index);
         },
       ),
@@ -53,7 +55,7 @@ class HomeExam extends StatelessWidget {
     return InkWell(
       onTap: () {
         value.getTopicById(value.listTopic[index].id);
-        value.getQuestionInTopic();
+        // value.getQuestionInTopic();
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => DetailExam()));
       },
