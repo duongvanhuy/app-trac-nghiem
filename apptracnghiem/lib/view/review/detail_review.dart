@@ -35,6 +35,13 @@ class DetailReview extends StatelessWidget {
           buildListAnswer()
         ],
       ),
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("images/iwe_white_background.png"),
+          fit: BoxFit.cover
+        )
+      ),
+
     );
   }
 
