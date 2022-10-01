@@ -38,7 +38,7 @@ class HomeExam extends StatelessWidget {
   }
 
   buildListItem(var size, value) {
-    print("lengthaaaaa" + value.listTopic.length.toString());
+    // print("lengthaaaaa" + value.listTopic.length.toString());
     return Container(
       height: size.height * .9,
       child: ListView.builder(

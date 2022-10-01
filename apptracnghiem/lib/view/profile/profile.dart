@@ -1,24 +1,41 @@
 import 'package:apptracnghiem/view/account/loginView.dart';
 import 'package:flutter/material.dart';
+import 'package:toast/toast.dart';
 
 class Profile extends StatelessWidget {
-  const Profile({Key? key}) : super(key: key);
+  Profile({Key? key}) : super(key: key);
+  var _formKey = GlobalKey<FormState>();
+  var currentPasswordController = TextEditingController();
+  var newPassWordController = TextEditingController();
+  var confirmPassWordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    ToastContext().init(context); //Hiển thị toast message
     return Scaffold(
+      endDrawer: buildEndDrawer(context),
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: (){
+            Navigator.pop(context);
+          }, 
+          icon: Icon(Icons.arrow_back)
+        ),
         centerTitle: true,
         title: Text("Tài khoản"),
-        actions: [
-          InkWell(
-            onTap: () {},
-            child: Container(
-              padding: EdgeInsets.only(right: 10),
-              child: Icon(Icons.settings),
-            ),
-          )
-        ],
+        // actions: [
+        //   InkWell(
+        //     onTap: () {
+        //       Drawer(
+        //         backgroundColor: Colors.white,
+        //       );
+        //     },
+        //     child: Container(
+        //       padding: EdgeInsets.only(right: 10),
+        //       child: Icon(Icons.settings),
+        //     ),
+        //   )
+        // ],
       ),
       body: buildBody(context),
     );
@@ -323,5 +340,219 @@ class Profile extends StatelessWidget {
             ),
           ],
         ));
+  }
+
+  buildEndDrawer(context) {
+    return Drawer(
+      child: ListView(
+        children: [
+          UserAccountsDrawerHeader(
+            accountName: Text("Tran Vinh Lam"), 
+            accountEmail: Text("tranvinhlam01@gmail.com"),
+            currentAccountPicture: CircleAvatar(
+              child: ClipOval(
+                child: Image.network(
+                  "https://media.istockphoto.com/photos/businessman-silhouette-as-avatar-or-default-profile-picture-picture-id476085198?b=1&k=20&m=476085198&s=612x612&w=0&h=Ov2YWXw93vRJNKFtkoFjnVzjy_22VcLLXZIcAO25As4=",
+                  width: 90,
+                  height: 90,
+                  fit: BoxFit.cover,
+                ),
+              )
+            ),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("images/bg-login.jpg"),
+                fit: BoxFit.cover
+              )
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text("Favorrite"),
+            onTap: (){
+
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text("Favorrite"),
+            onTap: (){
+
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text("Favorrite"),
+            onTap: (){
+
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text("Favorrite"),
+            onTap: (){
+
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text("Favorrite"),
+            onTap: (){
+
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text("Favorrite"),
+            onTap: (){
+
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.change_circle_outlined),
+            title: Text("Đổi mật khẩu"),
+            onTap: (){
+              showDialogChangePassword(context);
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text("Favorrite"),
+            onTap: (){
+
+            },
+          ),
+          Divider(),
+        
+        ],
+      ),
+    );
+  }
+
+  showDialogChangePassword(context) {
+    return showDialog(
+      context: context, 
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            'Đổi mật khẩu',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24
+            ),
+          ),
+          content: Container(
+            height: 350,
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: currentPasswordController,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      labelText: "Mật khẩu hiện tại",
+                      hintText: "Nhập mật khẩu hiệN tại",
+                      // Cho icon nằm cuối
+                      prefixIcon: Icon(Icons.password),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20))
+                      ),
+                    ),
+                    validator: (value) {
+                      if(value == null || value.isEmpty) {
+                        return "Vui lòng nhập mật khẩU";
+                      }
+                      if(value.length < 8) {
+                        return "Mật khẩu tối thiếu 8 kí tự"; 
+                      }
+                    return null;
+                  },
+                  ),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    controller: newPassWordController,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      labelText: "Mật khẩu mới",
+                      hintText: "Mật khẩu mới",
+                      // Cho icon nằm cuối
+                      prefixIcon: Icon(Icons.password),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20))
+                      ),
+                    ),
+                    validator: (value) {
+                      if(value == null || value.isEmpty) {
+                        return "Vui lòng nhập mật khẩu";
+                      }
+                      if(value.length < 8) {
+                        return "Mật khẩu tối thiếu 8 kí tự"; 
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    controller: confirmPassWordController,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      labelText: "Nhập lại mật khẩu",
+                      hintText: "Nhập lại mật khẩu",
+                      // Cho icon nằm cuối
+                      prefixIcon: Icon(Icons.password),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20))
+                      ),
+                    ),
+                    validator: (value) {
+                    if(value == null || value.isEmpty) {
+                      return "Vui lòng nhập mật khẩu";
+                    }
+                    if(value != newPassWordController.text) {
+                      return "Nhập lại mật khẩu không đúng"; 
+                    }
+                    return null;
+                  },
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: (){
+                      if(_formKey.currentState!.validate()) {
+                        Navigator.of(context).pop();
+                        return Toast.show(
+                          "Đổi mật khẩu thành công", 
+                          duration: Toast.lengthShort, 
+                          gravity:  Toast.top);
+                      }
+                    }, 
+                    child: Text("Đổi mật khẩu")
+                  )
+                ],
+              ),
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Thoát'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            
+          ],
+        );
+      }
+    );
   }
 }
