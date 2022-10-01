@@ -1,4 +1,5 @@
 import 'package:apptracnghiem/provider/api_helper.dart';
+import 'package:apptracnghiem/view/about_us/home_about_us.dart';
 import 'package:apptracnghiem/view/exam/home_exam.dart';
 import 'package:apptracnghiem/view/regulation/home_regulation.dart';
 import 'package:apptracnghiem/view/review/home_review.dart';
@@ -275,6 +276,11 @@ class Home extends StatelessWidget {
             ),
           )),
           Card(
+              child: InkWell(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => HomeAboutUs()));
+            },
             child: Container(
               margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
               // border bottom
@@ -308,7 +314,7 @@ class Home extends StatelessWidget {
                 ],
               ),
             ),
-          ),
+          )),
           Card(
             child: InkWell(
               onTap: () {
