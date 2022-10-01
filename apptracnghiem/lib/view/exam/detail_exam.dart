@@ -34,10 +34,12 @@ class DetailExam extends StatelessWidget {
                   var check = value.checkAllAnswerUserIsTrue();
                   // check == true => đã đã trả lời hết
                   print("check" + check.toString());
+
                   if (check == false) {
                     // show confirm dialog "Bạn chưa hoàn thành hết bài thi, bạn có muốn nộp bài không ?"
                     showMessage(context, value);
                   } else {
+                    value.result();
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => ExamResults()));
                   }

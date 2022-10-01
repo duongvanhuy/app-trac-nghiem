@@ -1,4 +1,5 @@
 import 'package:apptracnghiem/provider/api_helper.dart';
+import 'package:apptracnghiem/view/exam/detail_exam.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,12 +9,12 @@ class ExamResults extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<APIHelper>(builder: (context, value, child) {
       return Scaffold(
-        body: buidBody(value),
+        body: buidBody(value, context),
       );
     });
   }
 
-  Widget buidBody(value) {
+  Widget buidBody(value, context) {
     return Container(
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -50,7 +51,7 @@ class ExamResults extends StatelessWidget {
           ),
           // profile
           profile(),
-          result(value),
+          result(value, context),
         ],
       ),
     );
@@ -107,7 +108,7 @@ class ExamResults extends StatelessWidget {
     );
   }
 
-  Widget result(value) {
+  Widget result(value, context) {
     return Container(
       padding: EdgeInsets.only(top: 15),
       child: Column(children: [
@@ -224,6 +225,9 @@ class ExamResults extends StatelessWidget {
             alignment: Alignment.center,
             child: TextButton(
                 onPressed: () {
+                  value.changeColorAnswer();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DetailExam()));
                   print("Xem kết quả thi");
                 },
                 child: Container(

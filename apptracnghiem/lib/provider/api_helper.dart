@@ -151,48 +151,206 @@ class APIHelper extends ChangeNotifier {
 
   void changeColorAnswer() {
     var colorAnswer = topic.items![questionNow - 1].answerUser;
-    if (colorAnswer != null) {
-      listNumberQuestion[questionNow - 1] = SettingHelper.colors[0];
-      switch (colorAnswer) {
-        case "A":
-          colorBasic[0] = SettingHelper.colors[0];
-          colorBasic[1] = SettingHelper.colors[2];
-          colorBasic[2] = SettingHelper.colors[2];
-          colorBasic[3] = SettingHelper.colors[2];
-          break;
-        case "B":
-          colorBasic[0] = SettingHelper.colors[2];
-          colorBasic[1] = SettingHelper.colors[0];
-          colorBasic[2] = SettingHelper.colors[2];
-          colorBasic[3] = SettingHelper.colors[2];
-          break;
-        case "C":
-          colorBasic[0] = SettingHelper.colors[2];
-          colorBasic[1] = SettingHelper.colors[2];
-          colorBasic[2] = SettingHelper.colors[0];
-          colorBasic[3] = SettingHelper.colors[2];
-          break;
-        case "D":
-          colorBasic[0] = SettingHelper.colors[2];
-          colorBasic[1] = SettingHelper.colors[2];
-          colorBasic[2] = SettingHelper.colors[2];
-          colorBasic[3] = SettingHelper.colors[0];
-          break;
-        default:
+    if (isDone == false) {
+      if (colorAnswer != null) {
+        listNumberQuestion[questionNow - 1] = SettingHelper.colors[0];
+        switch (colorAnswer) {
+          case "A":
+            colorBasic[0] = SettingHelper.colors[0];
+            colorBasic[1] = SettingHelper.colors[2];
+            colorBasic[2] = SettingHelper.colors[2];
+            colorBasic[3] = SettingHelper.colors[2];
+            break;
+          case "B":
+            colorBasic[0] = SettingHelper.colors[2];
+            colorBasic[1] = SettingHelper.colors[0];
+            colorBasic[2] = SettingHelper.colors[2];
+            colorBasic[3] = SettingHelper.colors[2];
+            break;
+          case "C":
+            colorBasic[0] = SettingHelper.colors[2];
+            colorBasic[1] = SettingHelper.colors[2];
+            colorBasic[2] = SettingHelper.colors[0];
+            colorBasic[3] = SettingHelper.colors[2];
+            break;
+          case "D":
+            colorBasic[0] = SettingHelper.colors[2];
+            colorBasic[1] = SettingHelper.colors[2];
+            colorBasic[2] = SettingHelper.colors[2];
+            colorBasic[3] = SettingHelper.colors[0];
+            break;
+          default:
+            colorBasic = [
+              SettingHelper.colors[2],
+              SettingHelper.colors[2],
+              SettingHelper.colors[2],
+              SettingHelper.colors[2]
+            ];
+        }
+      } else {
+        colorBasic = [
+          SettingHelper.colors[2],
+          SettingHelper.colors[2],
+          SettingHelper.colors[2],
+          SettingHelper.colors[2]
+        ];
+      }
+    } else {
+      // đã hoàn thành bài thi
+
+      // Nếu câu đúng
+      if (topic.items![questionNow - 1].isCorrect == true) {
+        //  listNumberQuestion[questionNow - 1] = SettingHelper.colors[3];
+        if (colorAnswer != null) {
+          //  listNumberQuestion[questionNow - 1] = SettingHelper.colors[0];
+          switch (colorAnswer) {
+            case "A":
+              colorBasic[0] = SettingHelper.colors[3];
+              colorBasic[1] = SettingHelper.colors[2];
+              colorBasic[2] = SettingHelper.colors[2];
+              colorBasic[3] = SettingHelper.colors[2];
+              break;
+            case "B":
+              colorBasic[0] = SettingHelper.colors[2];
+              colorBasic[1] = SettingHelper.colors[3];
+              colorBasic[2] = SettingHelper.colors[2];
+              colorBasic[3] = SettingHelper.colors[2];
+              break;
+            case "C":
+              colorBasic[0] = SettingHelper.colors[2];
+              colorBasic[1] = SettingHelper.colors[2];
+              colorBasic[2] = SettingHelper.colors[3];
+              colorBasic[3] = SettingHelper.colors[2];
+              break;
+            case "D":
+              colorBasic[0] = SettingHelper.colors[2];
+              colorBasic[1] = SettingHelper.colors[2];
+              colorBasic[2] = SettingHelper.colors[2];
+              colorBasic[3] = SettingHelper.colors[3];
+              break;
+            default:
+              colorBasic = [
+                SettingHelper.colors[2],
+                SettingHelper.colors[2],
+                SettingHelper.colors[2],
+                SettingHelper.colors[2]
+              ];
+          }
+        } else {
           colorBasic = [
             SettingHelper.colors[2],
             SettingHelper.colors[2],
             SettingHelper.colors[2],
             SettingHelper.colors[2]
           ];
+        }
+        // nếu câu sai
+      } else if (topic.items![questionNow - 1].isCorrect == false) {
+        //  listNumberQuestion[questionNow - 1] = SettingHelper.colors[1];
+        if (colorAnswer != null) {
+          //  listNumberQuestion[questionNow - 1] = SettingHelper.colors[0];
+          switch (colorAnswer) {
+            case "A":
+              colorBasic[0] = SettingHelper.colors[1];
+              colorBasic[1] = SettingHelper.colors[2];
+              colorBasic[2] = SettingHelper.colors[2];
+              colorBasic[3] = SettingHelper.colors[2];
+              break;
+            case "B":
+              colorBasic[0] = SettingHelper.colors[2];
+              colorBasic[1] = SettingHelper.colors[1];
+              colorBasic[2] = SettingHelper.colors[2];
+              colorBasic[3] = SettingHelper.colors[2];
+              break;
+            case "C":
+              colorBasic[0] = SettingHelper.colors[2];
+              colorBasic[1] = SettingHelper.colors[2];
+              colorBasic[2] = SettingHelper.colors[1];
+              colorBasic[3] = SettingHelper.colors[2];
+              break;
+            case "D":
+              colorBasic[0] = SettingHelper.colors[2];
+              colorBasic[1] = SettingHelper.colors[2];
+              colorBasic[2] = SettingHelper.colors[2];
+              colorBasic[3] = SettingHelper.colors[1];
+              break;
+            default:
+              colorBasic = [
+                SettingHelper.colors[2],
+                SettingHelper.colors[2],
+                SettingHelper.colors[2],
+                SettingHelper.colors[2]
+              ];
+          }
+          ;
+          switch (topic.items![questionNow - 1].answerCorrect) {
+            case "A":
+              colorBasic[0] = SettingHelper.colors[3];
+
+              break;
+            case "B":
+              colorBasic[1] = SettingHelper.colors[3];
+
+              break;
+            case "C":
+              colorBasic[2] = SettingHelper.colors[3];
+
+              break;
+            case "D":
+              colorBasic[3] = SettingHelper.colors[3];
+              break;
+            default:
+              colorBasic = [
+                SettingHelper.colors[2],
+                SettingHelper.colors[2],
+                SettingHelper.colors[2],
+                SettingHelper.colors[2]
+              ];
+          }
+        } else {
+          colorBasic = [
+            SettingHelper.colors[2],
+            SettingHelper.colors[2],
+            SettingHelper.colors[2],
+            SettingHelper.colors[2]
+          ];
+        }
+      } else {
+        // nếu câu chưa làm
+        switch (topic.items![questionNow - 1].answerCorrect) {
+          case "A":
+            colorBasic[0] = SettingHelper.colors[3];
+            colorBasic[1] = SettingHelper.colors[2];
+            colorBasic[2] = SettingHelper.colors[2];
+            colorBasic[3] = SettingHelper.colors[2];
+            break;
+          case "B":
+            colorBasic[0] = SettingHelper.colors[2];
+            colorBasic[1] = SettingHelper.colors[3];
+            colorBasic[2] = SettingHelper.colors[2];
+            colorBasic[3] = SettingHelper.colors[2];
+            break;
+          case "C":
+            colorBasic[0] = SettingHelper.colors[2];
+            colorBasic[1] = SettingHelper.colors[2];
+            colorBasic[2] = SettingHelper.colors[3];
+            colorBasic[3] = SettingHelper.colors[2];
+            break;
+          case "D":
+            colorBasic[0] = SettingHelper.colors[2];
+            colorBasic[1] = SettingHelper.colors[2];
+            colorBasic[2] = SettingHelper.colors[2];
+            colorBasic[3] = SettingHelper.colors[3];
+            break;
+          default:
+            colorBasic = [
+              SettingHelper.colors[2],
+              SettingHelper.colors[2],
+              SettingHelper.colors[2],
+              SettingHelper.colors[2]
+            ];
+        }
       }
-    } else {
-      colorBasic = [
-        SettingHelper.colors[2],
-        SettingHelper.colors[2],
-        SettingHelper.colors[2],
-        SettingHelper.colors[2]
-      ];
     }
     notifyListeners();
   }
