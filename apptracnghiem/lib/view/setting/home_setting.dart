@@ -8,8 +8,8 @@ import 'package:provider/provider.dart';
 class HomeSetting extends StatelessWidget {
   HomeSetting({Key? key}) : super(key: key);
   var listSetting = [
-    ["Số lượng câu", <int>[15,20,25,30], " câu"],
-    ["Thời gian thi", <int>[3,5,7,9], " phút"],
+    [Icons.list_alt_outlined, "Số lượng câu", <int>[10,20,30,40], " câu", Colors.red],
+    [Icons.timer_sharp, "Thời gian thi", <int>[3,5,7,9], " phút", Colors.green],
   ];
   var changeSettingExamProvider;
   var size ;
@@ -33,7 +33,12 @@ class HomeSetting extends StatelessWidget {
 
   buildBody(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: Colors.pink),
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("images/about_blue_background.png"),
+          fit: BoxFit.cover
+        )
+      ),
       padding: EdgeInsets.only(top: 10, left: 20, right: 20),
       child: ListView(
         children: [buildListItem(context)],
@@ -81,7 +86,7 @@ class HomeSetting extends StatelessWidget {
               border: Border.all(color: Color.fromARGB(255, 40, 43, 201)),
             ),  
             padding: EdgeInsets.all(10),
-            child: Icon(Icons.abc),
+            child: Icon(itemSetting[0], color: itemSetting[4], size: 32,),
           ),
           SizedBox(width: 15),
           Expanded(
@@ -91,32 +96,31 @@ class HomeSetting extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start, 
                 children: [
                   Text(
-                    itemSetting[0] , //Tiêu đề
+                    itemSetting[1] , //Tiêu đề
                     style: TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.bold,
                       fontSize: 16
                     ),
                   ),
-                
-                  const Divider(
-                    color: Colors.yellow,
+                  Divider(
                     height: 20,
                     thickness: 3,
+                    color: itemSetting[4],
                   ),
             ]),
           ),
-          
+          SizedBox(width: 5),
           DropdownButton<String>(
-            value: (itemSetting[2] == " phút" ? changeSettingExamProvider.time.toString() : changeSettingExamProvider.totalQuestion.toString()) + itemSetting[2], //Đơn vị
-            items: itemSetting[1].map<DropdownMenuItem<String>>((value) {
+            value: (itemSetting[3] == " phút" ? changeSettingExamProvider.time.toString() : changeSettingExamProvider.totalQuestion.toString()) + itemSetting[3], //Đơn vị
+            items: itemSetting[2].map<DropdownMenuItem<String>>((value) {
               return DropdownMenuItem<String>(
-                value: value.toString() + itemSetting[2], //Đơn vị
-                child: Text(value.toString() + itemSetting[2]), //Đơn vị
+                value: value.toString() + itemSetting[3], //Đơn vị
+                child: Text(value.toString() + itemSetting[3]), //Đơn vị
               );
             }).toList(),
             onChanged: (value) {
-              changeSettingExamProvider.changeTimeExam(value);
+              changeSettingExamProvider.changeSettingExam(value);
               
               // print(value);
             },

@@ -25,7 +25,12 @@ class HomeReview extends StatelessWidget {
 
   buildBody(var size) {
     return Container(
-      decoration: BoxDecoration(color: Colors.pink),
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("images/ontap_background.png"),
+          fit: BoxFit.cover
+        )
+      ),
       padding: EdgeInsets.only(top: 10, left: 20, right: 20),
       child: ListView(
         children: [buildListItem(size)],

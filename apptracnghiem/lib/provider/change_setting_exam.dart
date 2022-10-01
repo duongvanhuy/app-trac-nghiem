@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
 class ChangeSettingExamProvider extends ChangeNotifier {
-    int totalQuestion = 10;
+    int totalQuestion = 10 ; //Giá trị mặc đỊnh phải thuộc trong list giá trị được chọn
     int time = 3;
 
-    void changeTimeExam(newValue) {
+    void changeSettingExam(newValue) {
       var value = newValue.split(" ")[0];
       var unit = newValue.split(" ")[1];
 
