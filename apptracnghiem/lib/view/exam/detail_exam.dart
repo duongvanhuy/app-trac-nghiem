@@ -36,32 +36,7 @@ class DetailExam extends StatelessWidget {
                   print("check" + check.toString());
                   if (check == false) {
                     // show confirm dialog "Bạn chưa hoàn thành hết bài thi, bạn có muốn nộp bài không ?"
-                    showDialog(
-                        context: context,
-                        builder: (_) {
-                          return AlertDialog(
-                            title: Text("Chú ý!!!"),
-                            content: Text(
-                                "Bạn chưa hoàn thành hết bài thi, bạn có muốn nộp bài không ?"),
-                            actions: [
-                              TextButton(
-                                child: Text("Quay lại"),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                              TextButton(
-                                child: Text("Nộp bài"),
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => ExamResults()));
-                                },
-                              ),
-                            ],
-                          );
-                        });
+                    showMessage(context, value);
                   } else {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => ExamResults()));
@@ -222,25 +197,6 @@ class DetailExam extends StatelessWidget {
     );
   }
 
-  // buildAnswer(value) {
-  //   return Container(
-  //     margin: EdgeInsets.only(top: 10, bottom: 10),
-  //     child: Row(
-  //       mainAxisSize: MainAxisSize.max,
-  //       children: [
-  //         CircleAvatar(
-  //           child: Text("1"),
-  //           backgroundColor: Colors.blue,
-  //         ),
-  //         SizedBox(width: 20),
-  //         Flexible(
-  //           child: Text("${value.question.answerA}"),
-  //         )
-  //       ],
-  //     ),
-  //   );
-  // }
-
   buildBottomNavigationBar(BuildContext context, value) {
     return Container(
       decoration: BoxDecoration(color: Color.fromARGB(255, 224, 221, 221)),
@@ -319,64 +275,31 @@ class DetailExam extends StatelessWidget {
     );
   }
 
-  showAlertDialog(BuildContext context) {
-    // set up the buttons
-    Widget cancelButton = TextButton(
-      child: Text("Cancel"),
-      onPressed: () {},
-    );
-    Widget continueButton = TextButton(
-      child: Text("Continue"),
-      onPressed: () {},
-    );
-
-    // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text("AlertDialog"),
-      content: Text(
-          "Would you like to continue learning how to use Flutter alerts?"),
-      actions: [
-        cancelButton,
-        continueButton,
-      ],
-    );
-
-    // show the dialog
+  showMessage(context, value) {
     showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: Text("Chú ý!!!"),
+            content: Text(
+                "Bạn chưa hoàn thành hết bài thi, bạn có muốn nộp bài không ?"),
+            actions: [
+              TextButton(
+                child: Text("Quay lại"),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              TextButton(
+                child: Text("Nộp bài"),
+                onPressed: () {
+                  value.result();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ExamResults()));
+                },
+              ),
+            ],
+          );
+        });
   }
 }
-
-
-//  Container(
-//                   height: 30,
-//                   decoration: BoxDecoration(
-//                     color: Colors.white,
-//                     border: Border(
-//                       top: BorderSide(
-//                           color: Color.fromARGB(255, 87, 85, 85),
-//                           width: 0.3,
-//                         ),
-//                          bottom: BorderSide(
-//                            color: Colors.red,
-//                           width: 2,
-//                         ),
-//                     ),
-//                     borderRadius: BorderRadius.circular(10),
-                    
-//                   ),
-//                   child: Center(
-//                     child: IconButton(
-//                       icon: Icon(Icons.arrow_drop_down,
-//                      ),
-//                       color: Colors.black,
-//                       iconSize: 20,
-//                       onPressed: (){
-//                         Navigator.pop(context);
-//                       },)),
-//                 ),
-

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:apptracnghiem/model/answer_result.dart';
 import 'package:apptracnghiem/model/question.dart';
 import 'package:apptracnghiem/model/topic.dart';
 import 'package:apptracnghiem/model/user.dart';
@@ -30,6 +31,8 @@ class APIHelper extends ChangeNotifier {
   // int totalQuestion = SettingHelper.totolQuestion[0];
   int totalQuestion = ChangeSettingExamProvider().totalQuestion;
   List<Color> listNumberQuestion = [];
+  bool isDone = false; // đặt trạng thái bài thi
+  AnswerResult answerResult = AnswerResult(); // lưu lại kết quả bài thi
 
   //Login
   static Future<bool> login(String userName, String password) async {
@@ -196,6 +199,22 @@ class APIHelper extends ChangeNotifier {
 
   void changeAnswerUser(String index) {
     topic.items![questionNow - 1].answerUser = index;
+    //  kiểm tra câu trả lời đúng hay sai
+    print(topic.items![questionNow - 1].answerUser);
+    print(topic.items![questionNow - 1].answerCorrect);
+    if (topic.items![questionNow - 1].answerUser ==
+        topic.items![questionNow - 1].answerCorrect) {
+      topic.items![questionNow - 1].isCorrect = true;
+    } else {
+      topic.items![questionNow - 1].isCorrect = false;
+    }
+    // for (int i = 0; i < topic.items!.length; i++) {
+    //   if (topic.items![i].answerUser == topic.items![i].answerCorrect) {
+    //     topic.items![i].isCorrect = true;
+    //   } else {
+    //     topic.items![i].isCorrect = false;
+    //   }
+    // }
     changeColorAnswer();
     notifyListeners();
   }
@@ -235,5 +254,41 @@ class APIHelper extends ChangeNotifier {
       }
     }
     return check;
+  }
+
+  // set status isDone
+  void setIsDone(bool isDone) {
+    this.isDone = isDone;
+    notifyListeners();
+  }
+
+  // kết quả bài thi
+  void result() {
+    setIsDone(true);
+    //    int? totalCount;
+    // int? rightCount;
+    // int? wrongCount;
+    // int? undoneCount;
+    // int? idUser;
+    //int? idTopic;
+
+    int rightCount = 0;
+    int wrongCount = 0;
+    topic.items!.forEach((element) {
+      if (element.isCorrect == true) {
+        rightCount++;
+      } else if (element.isCorrect == false) {
+        wrongCount++;
+      }
+    });
+
+    answerResult.rightCount = rightCount;
+    answerResult.wrongCount = wrongCount;
+    answerResult.totalCount = topic.items!.length;
+    answerResult.undoneCount = topic.items!.length - rightCount - wrongCount;
+    answerResult.idUser = 1;
+    answerResult.idTopic = topic.id;
+
+    notifyListeners();
   }
 }
