@@ -123,27 +123,36 @@ class APIHelper extends ChangeNotifier {
   }
 
   // change password
-  // Future<bool> changePassword(String oldPassword, String newPassword) async {
-  //   var response = await http.post(
-  //       Uri.parse('https://localhost:7107/api/Authen/ChangePassword'),
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Authorization': 'Bearer ' + user.token,
-  //       },
-  //       body: jsonEncode(<String, String>{
-  //         'oldPassword': oldPassword,
-  //         'newPassword': newPassword,
-  //       }));
-  //   print(response.statusCode);
-  //   if (response.statusCode == 200) {
-  //     print("Đổi mật khẩu thành công");
-  //     return true;
-  //   } else {
-  //     // throw Exception('Failed to load products');
+  Future<bool> changePassword(String newPassword, String oldPassword) async {
+    print("oldPassword" +
+        oldPassword +
+        "newPassword" +
+        newPassword +
+        "user" +
+        user.password!);
+    if (oldPassword == user.password) {
+      var response = await http.post(
+          Uri.parse('https://localhost:7107/api/Authen/ChangePassword'),
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Authorization': 'Bearer ' + user.token,
+          },
+          body: jsonEncode(<String, String>{
+            'username': user.username!,
+            'password': newPassword,
+          }));
+      if (response.statusCode == 200) {
+        print("Đổi mật khẩu thành công");
+        return true;
+      } else {
+        // throw Exception('Failed to load products');
 
-  //     return false;
-  //   }
-  // }
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
 
 // get topic by id
   // void getTopicById(int id) async {

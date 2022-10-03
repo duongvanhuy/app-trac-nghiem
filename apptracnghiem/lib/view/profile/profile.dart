@@ -416,7 +416,7 @@ class Profile extends StatelessWidget {
             leading: Icon(Icons.change_circle_outlined),
             title: Text("Đổi mật khẩu"),
             onTap: () {
-              showDialogChangePassword(context);
+              showDialogChangePassword(context, value);
             },
           ),
           Divider(),
@@ -431,7 +431,7 @@ class Profile extends StatelessWidget {
     );
   }
 
-  showDialogChangePassword(context) {
+  showDialogChangePassword(context, value) {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -516,13 +516,27 @@ class Profile extends StatelessWidget {
                     ),
                     SizedBox(height: 20),
                     ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             // Navigator.of(context).pop();
                             // return Toast.show(
                             //   "Đổi mật khẩu thành công",
                             //   duration: Toast.lengthShort,
                             //   gravity:  Toast.top);
+                            var check = await value.changePassword(
+                                newPassWordController.text,
+                                currentPasswordController.text);
+                            if (check == true) {
+                              Navigator.of(context).pop();
+                              return Toast.show("Đổi mật khẩu thành công",
+                                  duration: Toast.lengthShort,
+                                  gravity: Toast.top);
+                            } else {
+                              return Toast.show("Đổi mật khẩu thất bại",
+                                  duration: Toast.lengthShort,
+                                  gravity: Toast.top);
+                            }
+                            ;
                           }
                         },
                         child: Text("Đổi mật khẩu"))
