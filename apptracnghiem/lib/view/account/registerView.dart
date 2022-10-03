@@ -7,6 +7,7 @@ import 'package:apptracnghiem/configs/setting.dart';
 import 'package:apptracnghiem/widget/widget_input.dart';
 import 'package:apptracnghiem/widget/account/icon_bottom.dart';
 import 'package:provider/provider.dart';
+import 'package:toast/toast.dart';
 
 class RegisterView extends StatefulWidget {
   // contractor
@@ -137,6 +138,13 @@ class _RegisterViewState extends State<RegisterView> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => LoginView()),
+                  );
+                } else {
+                  // Nếu sai thì hiển thị thông báo lỗi
+                  return Toast.show(
+                    value.message, 
+                    duration: Toast.lengthShort, 
+                    gravity:  Toast.top
                   );
                 }
               }

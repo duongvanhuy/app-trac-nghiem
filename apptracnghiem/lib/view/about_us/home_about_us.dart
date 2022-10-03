@@ -14,7 +14,7 @@ class HomeAboutUs extends StatelessWidget {
               Navigator.pop(context);
             },
             icon: Icon(Icons.arrow_back)),
-        title: Text("About us"),
+        title: Text("Về chúng tôi"),
       ),
       body: buildBody(context),
     );
@@ -55,7 +55,7 @@ class HomeAboutUs extends StatelessWidget {
                   width: 30,
                 ),
                 Text(
-                  "Sathachahnghai.ltd",
+                  "apptracnghiem.java",
                   style: TextStyle(fontSize: 20),
                 )
               ],
@@ -74,7 +74,7 @@ class HomeAboutUs extends StatelessWidget {
                   width: 30,
                 ),
                 Text(
-                  "Sathachahnghai.gmail.com",
+                  "apptracnghiem.gmail.com",
                   style: TextStyle(fontSize: 20),
                 )
               ],
@@ -93,7 +93,7 @@ class HomeAboutUs extends StatelessWidget {
                   width: 30,
                 ),
                 Text(
-                  "Sathachahnghai.com",
+                  "apptracnghiem.com",
                   style: TextStyle(fontSize: 20),
                 )
               ],
