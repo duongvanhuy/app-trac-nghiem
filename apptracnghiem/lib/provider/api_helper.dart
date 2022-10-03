@@ -36,15 +36,15 @@ class APIHelper extends ChangeNotifier {
 
   //Login
   static Future<bool> login(String userName, String password) async {
-    var response = await http.post(
-        Uri.parse('https://localhost:7107/api/Authen/Login/login'),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode(<String, String>{
-          'userName': userName,
-          'password': password,
-        }));
+    var response =
+        await http.post(Uri.parse('https://localhost:7107/api/Authen/Login'),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: jsonEncode(<String, String>{
+              'userName': userName,
+              'password': password,
+            }));
     print(response.statusCode);
     if (response.statusCode == 200) {
       return true;
@@ -85,6 +85,29 @@ class APIHelper extends ChangeNotifier {
       notifyListeners();
     } else {
       throw Exception('Failed to load products');
+    }
+  }
+
+  // register
+  Future<bool> register(String userName, String password, String email) async {
+    var response = await http.post(
+        Uri.parse('https://localhost:7107/api/Authen/Register'),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(<String, String>{
+          'username': userName,
+          'password': password,
+          'email': email
+        }));
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      print("Đăng kí thành công");
+      return true;
+    } else {
+      // throw Exception('Failed to load products');
+
+      return false;
     }
   }
 

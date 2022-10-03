@@ -1,7 +1,4 @@
 class AnswerResult {
-// right sentence
-// wrong sentence
-// undone sentence
   int? totalCount;
   int? rightCount;
   int? wrongCount;

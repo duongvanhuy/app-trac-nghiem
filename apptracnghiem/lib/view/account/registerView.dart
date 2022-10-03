@@ -1,10 +1,12 @@
 // import material
+import 'package:apptracnghiem/provider/api_helper.dart';
 import 'package:apptracnghiem/view/account/loginView.dart';
 import 'package:flutter/material.dart';
 
 import 'package:apptracnghiem/configs/setting.dart';
 import 'package:apptracnghiem/widget/widget_input.dart';
 import 'package:apptracnghiem/widget/account/icon_bottom.dart';
+import 'package:provider/provider.dart';
 
 class RegisterView extends StatefulWidget {
   // contractor
@@ -25,25 +27,26 @@ class _RegisterViewState extends State<RegisterView> {
   // build
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
+    return Consumer<APIHelper>(builder: (context, value, child) {
+      return Scaffold(
+          body: Container(
         constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
             image: DecorationImage(
                 // image: AssetImage('assets/images/bg.jpg'),
                 image: AssetImage('images/bg-login.jpg'),
                 fit: BoxFit.cover)),
-        child: buildBody(),
-      ),
-    );
+        child: buildBody(value),
+      ));
+    });
   }
 
-  Widget buildBody() {
+  Widget buildBody(value) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          contentRegister(),
+          contentRegister(value),
           // padding
           SizedBox(height: 20),
           IconBottom(),
@@ -86,7 +89,7 @@ class _RegisterViewState extends State<RegisterView> {
             style: TextStyle(fontSize: 16, color: Colors.greenAccent)));
   }
 
-  Widget contentRegister() {
+  Widget contentRegister(value) {
     return Form(
       key: _formKey,
       child: Column(
@@ -120,11 +123,22 @@ class _RegisterViewState extends State<RegisterView> {
           // button register
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
               if (_formKey.currentState!.validate()) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Đăng kí thành công')),
-                );
+                // ScaffoldMessenger.of(context).showSnackBar(
+                //   const SnackBar(content: Text('Đăng kí thành công')),
+                // );
+
+                var check = await value.register(_userNameController.text,
+                    _passwordController.text, _emailController.text);
+
+                //  print("check" + check.value.toString());
+                if (check == true) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginView()),
+                  );
+                }
               }
             },
             style: ElevatedButton.styleFrom(

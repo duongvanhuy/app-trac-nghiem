@@ -13,8 +13,8 @@ void main() {
       ChangeNotifierProvider(create: (context) => ChangeSettingExamProvider()),
     ],
     child: MaterialApp(
-      //home: LoginView(),
-      home: Home(),
+      home: LoginView(),
+      //home: Home(),
 
       debugShowCheckedModeBanner: false,
     ),
