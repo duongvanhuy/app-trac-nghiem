@@ -4,6 +4,7 @@ import 'package:apptracnghiem/view/home.dart';
 import 'package:apptracnghiem/provider/api_helper.dart';
 import 'package:apptracnghiem/widget/account/icon_bottom.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'registerView.dart';
 import 'package:apptracnghiem/widget/widget_input.dart';
 import 'package:apptracnghiem/configs/setting.dart';
@@ -30,16 +31,21 @@ class _LoginViewState extends State<LoginView> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('images/bg-login.jpg'), fit: BoxFit.cover)),
-      child: Scaffold(backgroundColor: Colors.transparent, body: buildBody()),
-    );
+    return Consumer<APIHelper>(builder: (context, value, child) {
+      return Container(
+        constraints: const BoxConstraints.expand(),
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('images/bg-login.jpg'), fit: BoxFit.cover)),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: buildBody(value),
+        ),
+      );
+    });
   }
 
-  Widget buildBody() {
+  Widget buildBody(value) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +76,7 @@ class _LoginViewState extends State<LoginView> {
           const SizedBox(
             height: 20,
           ),
-          contentLogin(),
+          contentLogin(value),
           const SizedBox(height: 20),
           // register
           // register()
@@ -123,7 +129,7 @@ class _LoginViewState extends State<LoginView> {
     Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
   }
 
-  Widget contentLogin() {
+  Widget contentLogin(value) {
     // return form login
     return Form(
       key: _formKey,
@@ -190,7 +196,7 @@ class _LoginViewState extends State<LoginView> {
               if (_formKey.currentState!.validate()) {
                 // delete data in text field
                 // _usernameController.clear();
-                var check = await APIHelper.login(
+                var check = await value.login(
                     _usernameController.text, _passwordController.text);
 
                 if (check) {

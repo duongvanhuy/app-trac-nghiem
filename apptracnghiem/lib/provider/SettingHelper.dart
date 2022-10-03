@@ -52,7 +52,7 @@ class SettingHelper {
   // static List<Meta> metaList = [];
   // static List<Topic> examTopics = [];
   // static List<Topic> practiceTopics = [];
-  static User user = new User("", 0, '', 0, '', '', '', '', '');
+  // static User user = new User("", 0, '', 0, '', '', '', '', '');
   static String apiURL = "https://api.huego.vifiretek.vn";
   //static App appSetting = new App("", "", 0, 0);
   // static List<Question> questionBank = [];

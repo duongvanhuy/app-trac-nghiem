@@ -12,7 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class APIHelper extends ChangeNotifier {
-  static var user = SettingHelper.user;
+  // static var user = SettingHelper.user;
+  User user = User();
   String a = "a";
   List<Topic> listTopic = [];
   Topic topic = Topic();
@@ -35,7 +36,7 @@ class APIHelper extends ChangeNotifier {
   AnswerResult answerResult = AnswerResult(); // lưu lại kết quả bài thi
 
   //Login
-  static Future<bool> login(String userName, String password) async {
+  Future<bool> login(String userName, String password) async {
     var response =
         await http.post(Uri.parse('https://localhost:7107/api/Authen/Login'),
             headers: {
@@ -47,6 +48,15 @@ class APIHelper extends ChangeNotifier {
             }));
     print(response.statusCode);
     if (response.statusCode == 200) {
+      // user.password = password;
+      // user.userName = userName;
+      Map<String, dynamic> dataUser = json.decode(response.body);
+      // convert String into json
+
+      // user = User.fromJson(jsonDecode(dataUser.));
+      // convert into Json
+      user = User.fromJson(dataUser);
+      print("user" + user.toString());
       return true;
     } else {
       // throw Exception('Failed to load products');
@@ -110,6 +120,29 @@ class APIHelper extends ChangeNotifier {
       return false;
     }
   }
+
+  // change password
+  // Future<bool> changePassword(String oldPassword, String newPassword) async {
+  //   var response = await http.post(
+  //       Uri.parse('https://localhost:7107/api/Authen/ChangePassword'),
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Authorization': 'Bearer ' + user.token,
+  //       },
+  //       body: jsonEncode(<String, String>{
+  //         'oldPassword': oldPassword,
+  //         'newPassword': newPassword,
+  //       }));
+  //   print(response.statusCode);
+  //   if (response.statusCode == 200) {
+  //     print("Đổi mật khẩu thành công");
+  //     return true;
+  //   } else {
+  //     // throw Exception('Failed to load products');
+
+  //     return false;
+  //   }
+  // }
 
 // get topic by id
   // void getTopicById(int id) async {
