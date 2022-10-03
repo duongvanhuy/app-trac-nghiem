@@ -367,48 +367,59 @@ class Profile extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text("Favorrite"),
+            leading: Icon(Icons.notifications_active),
+            title: Text("Thông báo"),
+            trailing: CircleAvatar(
+              maxRadius: 10,
+              child: Text(
+                "5",
+                style: TextStyle(
+                  color: Colors.white
+                ),
+              ),
+              backgroundColor: Colors.red,
+            ),
             onTap: (){
 
             },
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text("Favorrite"),
+            leading: Icon(Icons.share),
+            title: Text("Giới thiệu"),
             onTap: (){
 
             },
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text("Favorrite"),
+            leading: Icon(Icons.person_add_alt),
+            title: Text("Bạn bè(5)"),
+            trailing: Text("Kết bạn"),
             onTap: (){
 
             },
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text("Favorrite"),
+            leading: Icon(Icons.save),
+            title: Text("Câu hỏi đã lưu"),
             onTap: (){
 
             },
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text("Favorrite"),
+            leading: Icon(Icons.stacked_bar_chart),
+            title: Text("Thống kê"),
             onTap: (){
 
             },
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text("Favorrite"),
+            leading: Icon(Icons.message),
+            title: Text("Góp ý"),
             onTap: (){
 
             },
@@ -423,8 +434,8 @@ class Profile extends StatelessWidget {
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text("Favorrite"),
+            leading: Icon(Icons.account_box_outlined),
+            title: Text("Về chúng tôi"),
             onTap: (){
 
             },
