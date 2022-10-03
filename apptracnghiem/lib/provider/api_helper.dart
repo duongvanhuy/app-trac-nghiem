@@ -17,6 +17,7 @@ class APIHelper extends ChangeNotifier {
   List<Topic> listTopic = [];
   Topic topic = Topic();
   Question question = Question();
+  String message = "";
   int questionNow = 1;
   // mảng mã màu để lưu lại 2 màu:-- mau 1: lưu cho đáp án không được chọn
   // màu 2: thay đổi cho đáp án được chọn
@@ -106,7 +107,7 @@ class APIHelper extends ChangeNotifier {
       return true;
     } else {
       // throw Exception('Failed to load products');
-
+      message = response.body;
       return false;
     }
   }

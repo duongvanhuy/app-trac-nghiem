@@ -41,13 +41,8 @@ class HomeReview extends StatelessWidget {
   buildListItem(var size) {
     return Container(
       height: size.height * .80,
-      child: GridView.builder(
+      child: ListView.builder(
         itemCount: 6,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1,
-            mainAxisSpacing: 15,
-            crossAxisSpacing: 15,
-            childAspectRatio: 4.4),
         itemBuilder: (BuildContext context, int index) {
           return buildItem(size, context);
         },
@@ -57,6 +52,7 @@ class HomeReview extends StatelessWidget {
 
   buildItem(var size, BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: 5, bottom: 5),
       padding: EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(5)),

@@ -60,14 +60,14 @@ buildBody(Size size) {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Lái phương tiện",
+                        "Thi trắc nghiệm tính giờ",
                         style: TextStyle(
                             color: Colors.blue,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "191 Câu lý thuyết & thực hành",
+                        "Trả lời các câu hỏi theo khung thời gian",
                         style: TextStyle(
                             color: Color.fromARGB(255, 52, 155, 240),
                             fontSize: 18,
@@ -118,7 +118,7 @@ buildBody(Size size) {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "- Luật 15 câu",
+                        "-Đề trắc nghiệm: ",
                         style: TextStyle(
                             color: Color.fromARGB(255, 52, 155, 240),
                             fontSize: 18,
@@ -126,7 +126,7 @@ buildBody(Size size) {
                             fontStyle: FontStyle.italic),
                       ),
                       Text(
-                        "- Luồng 6 câu",
+                        "- Tối thiểu 10 câu, tối đa 30 câu",
                         style: TextStyle(
                             color: Color.fromARGB(255, 52, 155, 240),
                             fontSize: 18,
@@ -134,15 +134,7 @@ buildBody(Size size) {
                             fontStyle: FontStyle.italic),
                       ),
                       Text(
-                        "- Vận tải hàng hóa và hành khách 6 câu",
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 52, 155, 240),
-                            fontSize: 18,
-                            fontWeight: FontWeight.normal,
-                            fontStyle: FontStyle.italic),
-                      ),
-                      Text(
-                        "- Thủy nghiệp cơ bản 3 câu",
+                        "- Tối thiếu 3 phút, tối đa 9 phút",
                         style: TextStyle(
                             color: Color.fromARGB(255, 52, 155, 240),
                             fontSize: 18,
@@ -186,14 +178,14 @@ buildBody(Size size) {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Thời gian thi",
+                        "Tính điểm",
                         style: TextStyle(
                             color: Colors.blue,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "Tối đa 2phút/câu. Có 30 câu hỏi làm đúng từ 25 câu trở lên là đạt",
+                        "Dựa trên tổng số câu đÚng và thời gian",
                         style: TextStyle(
                             color: Color.fromARGB(255, 52, 155, 240),
                             fontSize: 18,
