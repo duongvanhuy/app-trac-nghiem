@@ -58,8 +58,8 @@ class HomeExam extends StatelessWidget {
   buildItem(var size, BuildContext context, value, index) {
     return InkWell(
       onTap: () {
+        value.isDone = false;
         value.getTopicById(value.listTopic[index].id);
-        // value.getQuestionInTopic();
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => DetailExam()));
       },

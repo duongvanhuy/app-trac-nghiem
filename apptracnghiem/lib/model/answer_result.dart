@@ -3,6 +3,7 @@ class AnswerResult {
   int? rightCount;
   int? wrongCount;
   int? undoneCount;
+  String? timeExam;
   int? idUser;
   int? idTopic;
 
@@ -12,6 +13,7 @@ class AnswerResult {
       this.rightCount,
       this.wrongCount,
       this.undoneCount,
+      this.timeExam,
       this.idUser,
       this.idTopic});
   // fromToJson
@@ -20,6 +22,7 @@ class AnswerResult {
         totalCount: json['totalCount'],
         rightCount: json['rightCount'],
         wrongCount: json['wrongCount'],
+        timeExam: json['timeExam'],
         undoneCount: json['undoneCount'],
         idUser: json['idUser'],
         idTopic: json['idTopic']);

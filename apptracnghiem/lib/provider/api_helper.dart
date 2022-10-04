@@ -88,12 +88,6 @@ class APIHelper extends ChangeNotifier {
       }
 
       for (int i = 0; i < listTopicMemory.length; i++) {
-        // listTopicMemory[i].items = [];
-
-        // for (int j = 0; j < totalQuestion; j++) {
-        //   listTopicMemory[i].items!.add(listTopicMemory[i].items![j]);
-        // }
-        print("totalQuestion" + totalQuestion.toString());
         listTopicMemory[i]
             .items!
             .removeRange(totalQuestion, listTopicMemory[i].items!.length);
@@ -183,6 +177,7 @@ class APIHelper extends ChangeNotifier {
   //   }
   // }
   void getTopicById(int id) async {
+    back_delete_allMemory();
     listTopic.forEach((element) {
       if (element.id == id) {
         topic = element;
@@ -223,6 +218,7 @@ class APIHelper extends ChangeNotifier {
 
   void changeColorAnswer() {
     var colorAnswer = topic.items![questionNow - 1].answerUser;
+    print("isDone" + isDone.toString());
     if (isDone == false) {
       if (colorAnswer != null) {
         listNumberQuestion[questionNow - 1] = SettingHelper.colors[0];
@@ -272,7 +268,7 @@ class APIHelper extends ChangeNotifier {
 
       // Nếu câu đúng
       if (topic.items![questionNow - 1].isCorrect == true) {
-        //  listNumberQuestion[questionNow - 1] = SettingHelper.colors[3];
+        //   listNumberQuestion[questionNow - 1] = SettingHelper.colors[3];
         if (colorAnswer != null) {
           //  listNumberQuestion[questionNow - 1] = SettingHelper.colors[0];
           switch (colorAnswer) {
@@ -318,7 +314,7 @@ class APIHelper extends ChangeNotifier {
         }
         // nếu câu sai
       } else if (topic.items![questionNow - 1].isCorrect == false) {
-        //  listNumberQuestion[questionNow - 1] = SettingHelper.colors[1];
+        // listNumberQuestion[questionNow - 1] = SettingHelper.colors[1];
         if (colorAnswer != null) {
           //  listNumberQuestion[questionNow - 1] = SettingHelper.colors[0];
           switch (colorAnswer) {
@@ -438,13 +434,6 @@ class APIHelper extends ChangeNotifier {
     } else {
       topic.items![questionNow - 1].isCorrect = false;
     }
-    // for (int i = 0; i < topic.items!.length; i++) {
-    //   if (topic.items![i].answerUser == topic.items![i].answerCorrect) {
-    //     topic.items![i].isCorrect = true;
-    //   } else {
-    //     topic.items![i].isCorrect = false;
-    //   }
-    // }
     changeColorAnswer();
     notifyListeners();
   }
@@ -459,11 +448,13 @@ class APIHelper extends ChangeNotifier {
       SettingHelper.colors[2],
       SettingHelper.colors[2]
     ];
+    // listNumberQuestion = [];
     notifyListeners();
   }
 
   void backToHome() {
     listTopic = [];
+    listNumberQuestion = [];
     notifyListeners();
   }
 
@@ -493,15 +484,8 @@ class APIHelper extends ChangeNotifier {
   }
 
   // kết quả bài thi
-  void result() {
+  void result(timeExam) {
     setIsDone(true);
-    //    int? totalCount;
-    // int? rightCount;
-    // int? wrongCount;
-    // int? undoneCount;
-    // int? idUser;
-    //int? idTopic;
-
     int rightCount = 0;
     int wrongCount = 0;
     topic.items!.forEach((element) {
@@ -511,7 +495,7 @@ class APIHelper extends ChangeNotifier {
         wrongCount++;
       }
     });
-
+    answerResult.timeExam = timeExam;
     answerResult.rightCount = rightCount;
     answerResult.wrongCount = wrongCount;
     answerResult.totalCount = topic.items!.length;
@@ -532,6 +516,18 @@ class APIHelper extends ChangeNotifier {
       time = int.parse(value);
     }
 
+    notifyListeners();
+  }
+
+// thay đổi màu của danh sách câu hỏi khi đã nộp bài
+  void changeColorListNumberQuestion() {
+    for (int i = 0; i < topic.items!.length; i++) {
+      if (topic.items![i].isCorrect == true) {
+        listNumberQuestion[i] = SettingHelper.colors[3];
+      } else if (topic.items![i].isCorrect == false) {
+        listNumberQuestion[i] = SettingHelper.colors[1];
+      }
+    }
     notifyListeners();
   }
 }

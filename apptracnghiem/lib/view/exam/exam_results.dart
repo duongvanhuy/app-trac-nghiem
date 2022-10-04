@@ -11,13 +11,12 @@ class ExamResults extends StatelessWidget {
     return Consumer<APIHelper>(builder: (context, value, child) {
       return Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
-            }, 
-            icon: Icon(Icons.home)
-          )
-        ),
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Home()));
+                },
+                icon: Icon(Icons.home))),
         body: buidBody(value, context),
       );
     });
@@ -144,6 +143,38 @@ class ExamResults extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(5))),
+                    child: Icon(Icons.timelapse_outlined,
+                        size: 40, color: Colors.yellow)),
+                title: Text(
+                    "Thời gian còn lại: ${value.answerResult.timeExam} ",
+                    style: new TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0)),
+              ),
+              // Padding(
+              //   padding: EdgeInsets.only(left: 75, bottom: 5),
+              //   child:  LinearProgressIndicator(
+              //     width: 220.0,
+              //     lineHeight: 4.0,
+              //     percent: 1,
+              //     progressColor: Colors.green,
+              //   ),
+              // )
+            ],
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            children: [
+              ListTile(
+                leading: Container(
+                    width: 50,
+                    height: 60,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
                     child: Icon(Icons.check_circle,
                         size: 40, color: Colors.green)),
                 title: Text("Đúng: ${value.answerResult.rightCount} câu",
@@ -234,7 +265,9 @@ class ExamResults extends StatelessWidget {
             alignment: Alignment.center,
             child: TextButton(
                 onPressed: () {
+                  value.changeColorListNumberQuestion();
                   value.changeColorAnswer();
+
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => DetailExam()));
                   print("Xem kết quả thi");

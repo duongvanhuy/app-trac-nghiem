@@ -1,24 +1,30 @@
 import 'package:apptracnghiem/provider/api_helper.dart';
 import 'package:apptracnghiem/view/exam/exam_results.dart';
+import 'package:apptracnghiem/view/exam/home_exam.dart';
+import 'package:apptracnghiem/view/home.dart';
+import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 
 class DetailExam extends StatelessWidget {
-  const DetailExam({Key? key}) : super(key: key);
-
+  DetailExam({Key? key}) : super(key: key);
+  var countDownTimer = CountDownController();
   @override
   Widget build(BuildContext context) {
     return Consumer<APIHelper>(builder: (context, value, child) {
       return Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-              onPressed: () {
-                value.back_delete_allMemory();
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back)),
+          leading: value.isDone
+              ? (IconButton(
+                  onPressed: () {
+                    value.backToHome();
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Home()));
+                  },
+                  icon: Icon(Icons.home)))
+              : Text(""),
           title: Text(
             "Bộ đề thi thử ${value.topic.name}",
             maxLines: 1,
@@ -33,7 +39,7 @@ class DetailExam extends StatelessWidget {
 
           centerTitle: true,
         ),
-        body: buildBody(value),
+        body: buildBody(value, context),
         bottomNavigationBar: buildBottomNavigationBar(context, value),
       );
     });
@@ -55,7 +61,7 @@ class DetailExam extends StatelessWidget {
               // show confirm dialog "Bạn chưa hoàn thành hết bài thi, bạn có muốn nộp bài không ?"
               showMessage(context, value);
             } else {
-              value.result();
+              value.result(countDownTimer.getTime());
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ExamResults()));
             }
@@ -63,11 +69,12 @@ class DetailExam extends StatelessWidget {
     );
   }
 
-  buildBody(value) {
+  buildBody(value, context) {
     return Container(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          buildTime(),
+          buildTime(value, context),
           buildQuestion(value),
           SizedBox(height: 10),
           buildListAnswer(value)
@@ -76,27 +83,12 @@ class DetailExam extends StatelessWidget {
     );
   }
 
-  buildTime() {
+  buildTime(value, context) {
     return Container(
-      height: 50,
-      decoration: BoxDecoration(
-        color: Colors.blue,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20),
-        ),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-              color: Color.fromARGB(137, 50, 31, 226),
-              blurRadius: 15.0,
-              offset: Offset(0.0, 0.75))
-        ],
-      ),
-      child: Center(
-          child: Text(
-        "3:21",
-        style: TextStyle(fontSize: 18, color: Colors.white),
-      )),
+      margin: EdgeInsets.only(top: 20),
+      width: double.infinity,
+      alignment: Alignment.center,
+      child: buildTimeCountDown(value, context),
     );
   }
 
@@ -122,6 +114,8 @@ class DetailExam extends StatelessWidget {
       padding: EdgeInsets.all(20),
       height: 400,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           InkWell(
             onTap: () {
@@ -305,7 +299,7 @@ class DetailExam extends StatelessWidget {
               TextButton(
                 child: Text("Nộp bài"),
                 onPressed: () {
-                  value.result();
+                  value.result(countDownTimer.getTime());
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ExamResults()));
                 },
@@ -313,5 +307,39 @@ class DetailExam extends StatelessWidget {
             ],
           );
         });
+  }
+
+  buildTimeCountDown(value, context) {
+    return CircularCountDownTimer(
+      duration: value.time * 60, //Tổng số thời gian chạy
+      initialDuration: 0, //Bắt đầu từ bao nhiêu
+      controller: countDownTimer,
+      width: 80,
+      height: 80,
+      ringColor: Colors.grey[300]!,
+      ringGradient: null,
+      fillColor: Colors.purpleAccent[100]!,
+      fillGradient: null,
+      backgroundColor: Colors.purple[500],
+      backgroundGradient: null,
+      strokeWidth: 20.0, //Kích thước của con trỏ chạy
+      strokeCap: StrokeCap.round,
+      textStyle: TextStyle(
+          fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.bold),
+      textFormat: CountdownTextFormat.MM_SS, //Format kiểu hiển thị thời gian
+      isReverse: true, //Đếm ngược
+      isReverseAnimation: false,
+      isTimerTextShown: true, //Hiển thị thời gian
+      autoStart: true,
+      onStart: () {
+        debugPrint('Countdown Started');
+      },
+      onComplete: () {
+        debugPrint('Countdown Ended');
+        value.result();
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ExamResults()));
+      },
+    );
   }
 }
