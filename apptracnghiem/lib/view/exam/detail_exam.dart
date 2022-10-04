@@ -74,7 +74,15 @@ class DetailExam extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          buildTime(value, context),
+          (value.isDone == false)
+              ? buildTime(value, context)
+              : Container(
+                  padding: EdgeInsets.only(top: 10),
+                  alignment: Alignment.center,
+                  child: Text("Đã nộp bài",
+                      style: TextStyle(fontSize: 20, color: Colors.red)),
+                ),
+          //  buildTime(value, context),
           buildQuestion(value),
           SizedBox(height: 10),
           buildListAnswer(value)
