@@ -55,9 +55,17 @@ class DetailReview extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Câu ${value.questionNow}/${value.topic.items.length}",
-            style: TextStyle(fontWeight: FontWeight.bold),
+          Row(
+            children: [
+              Text(
+                "Câu ${value.questionNow}/${value.topic.items.length}",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Expanded(
+                  child: Container(
+                      alignment: Alignment.topRight,
+                      child: Icon(Icons.star, color: Colors.black))),
+            ],
           ),
           SizedBox(height: 10),
           Text("${value.question.questionName}")
