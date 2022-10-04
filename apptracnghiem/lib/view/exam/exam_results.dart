@@ -1,5 +1,6 @@
 import 'package:apptracnghiem/provider/api_helper.dart';
 import 'package:apptracnghiem/view/exam/detail_exam.dart';
+import 'package:apptracnghiem/view/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,14 @@ class ExamResults extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<APIHelper>(builder: (context, value, child) {
       return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+            }, 
+            icon: Icon(Icons.home)
+          )
+        ),
         body: buidBody(value, context),
       );
     });
