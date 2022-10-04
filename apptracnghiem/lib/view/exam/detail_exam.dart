@@ -24,7 +24,13 @@ class DetailExam extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          actions: !value.isDone ? buildButtonNopBai(value, context) : "", //Xử lý nếu trạng thí false thì hiển thị nút nộp bài 
+          // actions: !value.isDone
+          //     ? buildButtonNopBai(value, context)
+          //     : Text(""), //Xử lý nếu trạng thí false thì hiển thị nút nộp bài
+          actions: <Widget>[
+            !value.isDone ? buildButtonNopBai(value, context) : Text("")
+          ],
+
           centerTitle: true,
         ),
         body: buildBody(value),
@@ -33,29 +39,27 @@ class DetailExam extends StatelessWidget {
     });
   }
 
-  
   buildButtonNopBai(value, context) {
     return Container(
       child: TextButton(
-        child: Text(
-          "Nộp bài",
-          style: TextStyle(color: Colors.white, fontSize: 18),
-        ),
-        onPressed: () {
-          var check = value.checkAllAnswerUserIsTrue();
-          // check == true => đã đã trả lời hết
-          print("check" + check.toString());
+          child: Text(
+            "Nộp bài",
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+          onPressed: () {
+            var check = value.checkAllAnswerUserIsTrue();
+            // check == true => đã đã trả lời hết
+            print("check" + check.toString());
 
-          if (check == false) {
-            // show confirm dialog "Bạn chưa hoàn thành hết bài thi, bạn có muốn nộp bài không ?"
-            showMessage(context, value);
-          } else {
-            value.result();
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => ExamResults()));
-          }
-        }
-    ),
+            if (check == false) {
+              // show confirm dialog "Bạn chưa hoàn thành hết bài thi, bạn có muốn nộp bài không ?"
+              showMessage(context, value);
+            } else {
+              value.result();
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ExamResults()));
+            }
+          }),
     );
   }
 
