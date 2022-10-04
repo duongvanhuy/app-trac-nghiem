@@ -29,7 +29,11 @@ class HomeExam extends StatelessWidget {
 
   buildBody(var size, value) {
     return Container(
-      decoration: BoxDecoration(color: Colors.pink),
+      decoration: BoxDecoration(
+          image: DecorationImage(
+        image: AssetImage("images/bg-it2.jpg"),
+        fit: BoxFit.cover,
+      )),
       padding: EdgeInsets.only(top: 10, left: 20, right: 20),
       child: ListView(
         children: [buildListItem(size, value)],

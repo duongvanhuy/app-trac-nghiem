@@ -29,7 +29,7 @@ buildBody(Size size) {
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('images/bg-regulation.jpg'),
+          image: AssetImage('images/bg-it.jpg'),
           fit: BoxFit.cover,
         ),
       ),
@@ -47,7 +47,7 @@ buildBody(Size size) {
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.blue, width: 1)),
                 child: Icon(
-                  Icons.cabin_sharp,
+                  Icons.timer,
                   color: Colors.yellow,
                 ),
               ),
@@ -98,7 +98,7 @@ buildBody(Size size) {
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.blue, width: 1)),
                 child: Icon(
-                  Icons.cabin_sharp,
+                  Icons.question_answer_rounded,
                   color: Colors.red,
                 ),
               ),
@@ -118,7 +118,7 @@ buildBody(Size size) {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "-Đề trắc nghiệm: ",
+                        "- Đề trắc nghiệm: ",
                         style: TextStyle(
                             color: Color.fromARGB(255, 52, 155, 240),
                             fontSize: 18,
@@ -165,7 +165,7 @@ buildBody(Size size) {
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.blue, width: 1)),
                 child: Icon(
-                  Icons.cabin_sharp,
+                  Icons.score_rounded,
                   color: Color.fromARGB(255, 15, 98, 167),
                 ),
               ),
