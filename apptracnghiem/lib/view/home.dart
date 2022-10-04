@@ -119,6 +119,8 @@ class Home extends StatelessWidget {
           Card(
             child: InkWell(
               onTap: () {
+                value.getAllTopic();
+
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => HomeReview()));
               },

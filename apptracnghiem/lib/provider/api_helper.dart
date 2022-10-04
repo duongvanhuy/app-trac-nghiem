@@ -54,15 +54,8 @@ class APIHelper extends ChangeNotifier {
             }));
     print(response.statusCode);
     if (response.statusCode == 200) {
-      // user.password = password;
-      // user.userName = userName;
       Map<String, dynamic> dataUser = json.decode(response.body);
-      // convert String into json
-
-      // user = User.fromJson(jsonDecode(dataUser.));
-      // convert into Json
       user = User.fromJson(dataUser);
-      print("user" + user.toString());
       return true;
     } else {
       // throw Exception('Failed to load products');
@@ -78,7 +71,6 @@ class APIHelper extends ChangeNotifier {
           'Content-Type': 'application/json',
           // 'Authorization': 'Bearer ' + user.token,
         });
-    print(response.statusCode);
     if (response.statusCode == 200) {
       List<Topic> listTopicMemory = [];
       var data = jsonDecode(response.body);
@@ -218,7 +210,6 @@ class APIHelper extends ChangeNotifier {
 
   void changeColorAnswer() {
     var colorAnswer = topic.items![questionNow - 1].answerUser;
-    print("isDone" + isDone.toString());
     if (isDone == false) {
       if (colorAnswer != null) {
         listNumberQuestion[questionNow - 1] = SettingHelper.colors[0];
@@ -529,5 +520,74 @@ class APIHelper extends ChangeNotifier {
       }
     }
     notifyListeners();
+  }
+
+  void showAnswerInReview(int id) {
+    listTopic.forEach((element) {
+      if (element.id == id) {
+        topic = element;
+      }
+    });
+    getQuestionInTopic();
+    var colorAnswer = topic.items![questionNow - 1].answerCorrect;
+
+    notifyListeners();
+  }
+
+  // change color Correct in review
+  chanegColorInReview() {
+    var colorAnswer = topic.items![questionNow - 1].answerCorrect;
+    switch (colorAnswer) {
+      case "A":
+        colorBasic[0] = SettingHelper.colors[3];
+        colorBasic[1] = SettingHelper.colors[2];
+        colorBasic[2] = SettingHelper.colors[2];
+        colorBasic[3] = SettingHelper.colors[2];
+        break;
+      case "B":
+        colorBasic[0] = SettingHelper.colors[2];
+        colorBasic[1] = SettingHelper.colors[3];
+        colorBasic[2] = SettingHelper.colors[2];
+        colorBasic[3] = SettingHelper.colors[2];
+        break;
+      case "C":
+        colorBasic[0] = SettingHelper.colors[2];
+        colorBasic[1] = SettingHelper.colors[2];
+        colorBasic[2] = SettingHelper.colors[3];
+        colorBasic[3] = SettingHelper.colors[2];
+        break;
+      case "D":
+        colorBasic[0] = SettingHelper.colors[2];
+        colorBasic[1] = SettingHelper.colors[2];
+        colorBasic[2] = SettingHelper.colors[2];
+        colorBasic[3] = SettingHelper.colors[3];
+        break;
+      default:
+        colorBasic = [
+          SettingHelper.colors[2],
+          SettingHelper.colors[2],
+          SettingHelper.colors[2],
+          SettingHelper.colors[2]
+        ];
+    }
+    notifyListeners();
+  }
+
+  void nextQuestionInReview() {
+    if (questionNow <= topic.items!.length - 1) {
+      ++questionNow;
+
+      getQuestionInTopic();
+      chanegColorInReview();
+    }
+  }
+
+  void previousQuestionInReview() {
+    if (questionNow > 0) {
+      --questionNow;
+
+      getQuestionInTopic();
+      chanegColorInReview();
+    }
   }
 }
