@@ -54,6 +54,9 @@ class SettingHelper {
   // static List<Topic> practiceTopics = [];
   // static User user = new User("", 0, '', 0, '', '', '', '', '');
   static String apiURL = "https://api.huego.vifiretek.vn";
+
+  static int totalQuestion = 10;
+  static int time = 3;
   //static App appSetting = new App("", "", 0, 0);
   // static List<Question> questionBank = [];
 

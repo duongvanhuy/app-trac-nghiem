@@ -10,6 +10,7 @@ import 'package:apptracnghiem/provider/change_setting_exam.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class APIHelper extends ChangeNotifier {
   // static var user = SettingHelper.user;
@@ -31,10 +32,14 @@ class APIHelper extends ChangeNotifier {
 
   // cài đặt số lượng câu hỏi trong bài thi -- mặc định 10 câu
   // int totalQuestion = SettingHelper.totolQuestion[0];
-  int totalQuestion = ChangeSettingExamProvider().totalQuestion;
+  //int totalQuestion = ChangeSettingExamProvider().totalQuestion;
+  // var changeSettingExamProvider = Provider.of<ChangeSettingExamProvider>(context);
   List<Color> listNumberQuestion = [];
   bool isDone = false; // đặt trạng thái bài thi
   AnswerResult answerResult = AnswerResult(); // lưu lại kết quả bài thi
+
+  int totalQuestion = SettingHelper.totalQuestion;
+  int time = SettingHelper.time;
 
   //Login
   Future<bool> login(String userName, String password) async {
@@ -77,17 +82,18 @@ class APIHelper extends ChangeNotifier {
     if (response.statusCode == 200) {
       List<Topic> listTopicMemory = [];
       var data = jsonDecode(response.body);
-      print("totalQuestion" + totalQuestion.toString());
+
       for (var item in data) {
         listTopicMemory.add(Topic.fromJson(item));
       }
-      print("listTopicMemory" + listTopicMemory.length.toString());
+
       for (int i = 0; i < listTopicMemory.length; i++) {
         // listTopicMemory[i].items = [];
 
         // for (int j = 0; j < totalQuestion; j++) {
         //   listTopicMemory[i].items!.add(listTopicMemory[i].items![j]);
         // }
+        print("totalQuestion" + totalQuestion.toString());
         listTopicMemory[i]
             .items!
             .removeRange(totalQuestion, listTopicMemory[i].items!.length);
@@ -512,6 +518,19 @@ class APIHelper extends ChangeNotifier {
     answerResult.undoneCount = topic.items!.length - rightCount - wrongCount;
     answerResult.idUser = 1;
     answerResult.idTopic = topic.id;
+
+    notifyListeners();
+  }
+
+  void changeSettingExam(newValue) {
+    var value = newValue.split(" ")[0];
+    var unit = newValue.split(" ")[1];
+
+    if (unit == "câu") {
+      totalQuestion = int.parse(value);
+    } else if (unit == "phút") {
+      time = int.parse(value);
+    }
 
     notifyListeners();
   }

@@ -10,7 +10,7 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => APIHelper()),
-      ChangeNotifierProvider(create: (context) => ChangeSettingExamProvider()),
+      //   ChangeNotifierProvider(create: (context) => ChangeSettingExamProvider()),
     ],
     child: MaterialApp(
       home: LoginView(),
