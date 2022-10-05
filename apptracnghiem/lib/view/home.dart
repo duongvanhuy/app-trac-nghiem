@@ -92,9 +92,9 @@ class Home extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               child: Image.asset(
-                'images/logo-gub-home-removebg-preview.png',
+                'images/Logo-gub-demo-removebg-preview.png',
                 width: MediaQuery.of(context).size.width * 0.85,
-                height: MediaQuery.of(context).size.width * 0.25,
+                // height: MediaQuery.of(context).size.width * 0.25,
               ),
             ),
           ),

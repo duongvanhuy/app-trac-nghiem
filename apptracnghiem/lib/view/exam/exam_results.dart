@@ -58,14 +58,14 @@ class ExamResults extends StatelessWidget {
             height: 10,
           ),
           // profile
-          profile(),
+          profile(value),
           result(value, context),
         ],
       ),
     );
   }
 
-  Widget profile() {
+  Widget profile(value) {
     return Container(
       padding: EdgeInsets.only(
         left: 10,
@@ -84,7 +84,7 @@ class ExamResults extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text("Họ và tên: Nguyễn Văn A",
+              Text("Họ và tên: ${value.user.username}",
                   style: TextStyle(color: Colors.white, fontSize: 18)),
             ],
           ),
@@ -104,7 +104,7 @@ class ExamResults extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text("Chứng chỉ: Lái Phương Tiện",
+              Text("Chứng chỉ: ${value.topic.name}",
                   style: TextStyle(color: Colors.white, fontSize: 18)),
             ],
           ),
@@ -122,7 +122,7 @@ class ExamResults extends StatelessWidget {
       child: Column(children: [
         Container(
           child: Center(
-            child: Text("Bộ môn Java",
+            child: Text("Bộ môn ${value.topic.name}",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,

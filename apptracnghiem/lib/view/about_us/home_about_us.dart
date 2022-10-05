@@ -38,7 +38,7 @@ class HomeAboutUs extends StatelessWidget {
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage(
-                          "images/logo-gub-home-removebg-preview.png"),
+                          "images/logo-gub-demo-removebg-preview.png"),
                       fit: BoxFit.cover)),
             ),
             SizedBox(
